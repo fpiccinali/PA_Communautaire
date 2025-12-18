@@ -1,0 +1,19 @@
+[project]
+name = "pac-bdd"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Philippe ENTZMANN", email = "philippe@entzmann.name" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pytest-bdd>=8.1.0",
+]
+
+[project.scripts]
+pac-bdd = "pac_bdd:main"
+
+[build-system]
+requires = ["uv_build>=0.9.17,<0.10.0"]
+build-backend = "uv_build"

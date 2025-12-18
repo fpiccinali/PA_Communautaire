@@ -25,9 +25,9 @@ Example de contrôle qui n'entrent pas dans le champs de la validation métier c
 
 ## Cas d'utilisation
 
-- [CU01 - Valider une facture](CU01.md)
-- [CU02 - Refuser une facture](CU02.md)
-- [CU03 - Valider par défaut une facture](CU03.md)
+- [CU010 - Valider une facture](cu010.md)
+- [CU020 - Refuser une facture](cu020.md)
+- [CU030 - Valider par défaut une facture](cu030.md)
 
 ## Endpoints API / payload ESB
 

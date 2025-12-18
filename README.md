@@ -71,7 +71,23 @@ _Section en cours de définition par la communauté_
 
 ## 📚 Documentation
 
-- https://github.com/PDP-Libre/awesome-facturation-electronique
+Le projet est découpé en 9 briques:
+
+* [01-api-gateway](01-api-gateway/index.md)
+* [02-esb-central](02-esb-central/index.md)
+* [03-controle-formats](03-controle-formats/index.md)
+* [04-validation-metier](04-validation-metier/index.md)
+* [05-conversion-formats](05-conversion-formats/index.md)
+* [06-annuaire-local](06-annuaire-local/index.md)
+* [07-routage](07-routage/index.md)
+* [08-transmission-fiscale](08-transmission-fiscale/index.md)
+* [09-gestion-cycle-vie](09-gestion-cycle-vie/index.md)
+
+Vous trouverez également dans ce dépôt les [normes de référence](norme/README.md).
+
+D'autres liens sont disponibles sur [le projet awesome-facturation-electronique](https://github.com/PDP-Libre/awesome-facturation-electronique)
+
+Le sous-projet projet [packages/pac-bdd](packages/pac-bdd/README.md) permets d'exécuter les tests BDD.
 
 ## 🤝 Contribution
 
