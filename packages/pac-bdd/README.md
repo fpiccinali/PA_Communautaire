@@ -5,8 +5,9 @@ Une partie des fonctionnalités sont décrites sous forme de scenario BDD avec [
 
 Nous utilisons la syntaxe [gherkin en Français](https://cucumber.io/docs/gherkin/languages).
 
+Les tests BDD sont des fichiers avec l'extension `.feature` et peuvent être placé n'importe où dans la doc.
 
-Pour exécuter les tests BDD:
+Pour exécuter tous les tests BDD:
 
 ```shell
 uv run pytest
