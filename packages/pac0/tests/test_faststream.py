@@ -2,8 +2,14 @@
 # see https://faststream.ag2.ai/latest/getting-started/subscription/test/?h=test+nats+broker#in-memory-testing
 
 import asyncio
+from contextlib import closing
+import random
+import socket
 from typing import Annotated
 from unittest.mock import MagicMock, call
+
+import httpx
+import uvicorn
 from nats.server import run
 import pytest
 import faststream
@@ -11,8 +17,10 @@ from faststream.context import ContextRepo
 from faststream import FastStream, TestApp, Context
 from faststream.nats import NatsBroker, TestNatsBroker
 from pydantic import ValidationError
+from httpx import ASGITransport, AsyncClient
 from pac0.service.validation_metier.main import router as router_validation_metier
 from pac0.service.gestion_cycle_vie.main import router as router_gestion_cycle_vie
+from pac0.service.api_gateway.main import app as app_api_gateway
 
 
 broker = NatsBroker("nats://localhost:4222")
@@ -325,6 +333,76 @@ async def test_pubsub_nats_fixture_class(
 # see https://dummy.faststream.airt.ai/0.5/getting-started/integrations/frameworks/#integrations
 
 
+def find_available_port(start_port: int = 8200, max_attempts: int = 100) -> int:
+    """
+    Find an available port starting from a random port within a range.
+
+    Args:
+        start_port: Minimum port number to start searching from
+        max_attempts: Maximum number of ports to check
+
+    Returns:
+        Available port number
+    """
+    # Start from a random port to avoid collisions
+    port = random.randint(start_port, start_port + max_attempts)
+
+    for _ in range(max_attempts):
+        # Try to bind to the port to check if it's available
+        with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
+            # Set SO_REUSEADDR to allow reuse of the port
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+            try:
+                # Try to bind to the port
+                sock.bind(("0.0.0.0", port))
+                # Port is available
+                return port
+            except OSError:
+                # Port is in use, try the next one
+                port += 1
+                # Wrap around if we exceed max range
+                if port > 65535:
+                    port = start_port
+
+    # Fallback to a default port if none found
+    return start_port
+
+
+async def run_fastapi_server(app, port):
+    """
+    Run FastAPI server with uvicorn in async mode.
+    Automatically selects an available port.
+    """
+    # Configure uvicorn server
+    config = uvicorn.Config(
+        app,
+        host="0.0.0.0",  # Listen on all interfaces
+        port=port,
+        log_level="info",
+        # Optional: Add access logging
+        access_log=True,
+    )
+
+    # Create and run server
+    server = uvicorn.Server(config)
+    print(f"[Server] FastAPI is running at http://localhost:{port}")
+    print(f"[Server] Health check: http://localhost:{port}/health")
+
+    # Run the server (this will block until server stops)
+    try:
+        await server.serve()
+    except KeyboardInterrupt:
+        # Handle graceful shutdown on Ctrl+C
+        print("\n[Main] Shutdown signal received...")
+        print("[Main] Stopping all tasks...")
+    except Exception as e:
+        # Handle unexpected errors
+        print(f"[Main] Error occurred: {e}")
+    finally:
+        print("[Main] Application stopped")
+
+
 class PaContext:
     """
     See https://medium.com/@hitorunajp/asynchronous-context-managers-f1c33d38c9e3
@@ -349,9 +427,11 @@ class PaContext:
 
 
 class WorldContext:
-    def __init__(self, broker, subscriber):
+    def __init__(self, broker, subscriber, app_api_gateway, port):
         self.broker = broker
         self.subscriber = subscriber
+        self.app_api_gateway = app_api_gateway
+        self.port = port
 
         self.pac1 = PaContext(broker, subscriber)
         self.pac2 = PaContext(broker, subscriber)
@@ -384,29 +464,43 @@ async def my_world():
 
         broker = NatsBroker(f"nats://{server.host}:{server.port}", apply_types=True)
         subscriber = broker.subscriber("*")
-        my_world = WorldContext(broker, subscriber)
+
+        # Find an available port
+        port = find_available_port(start_port=8000)
+        my_world = WorldContext(broker, subscriber, app_api_gateway, port)
 
         async with my_world.broker as br:
             await br.start()
 
+            # start the services (faststream apps)
             services_tasks = [
                 asyncio.create_task(_faststream_app_factory(router).run())
                 for router in routers
             ]
+            print(f"[Server] Starting FastAPI on port {port}")
+            # start the api service (fastapi app)
+            services_tasks.append(
+                asyncio.create_task(run_fastapi_server(app_api_gateway, port))
+            )
 
-            # TODO: how to wait for app to be ready
+            # TODO: how to wait for services to be ready
             await asyncio.sleep(3)
 
             yield my_world
 
             # stop the services
+            print("Stopping the services ...")
             for task in services_tasks:
-                task.cancel()
+                try:
+                    task.cancel()
+                except asyncio.CancelledError:
+                    pass
             for task in services_tasks:
                 try:
                     await task
                 except asyncio.CancelledError:
                     pass
+            print("Services stopped")
 
     assert server.is_running is False
 
@@ -425,6 +519,61 @@ async def test_pubsub_world_fixture(
     mock = MagicMock()
     queue = "test"
     expected_messages = ("test_message_1", "test_message_2")
+
+    async def publish_test_message():
+        for msg in expected_messages:
+            await br.publish(msg, queue)
+
+    async def consume():
+        index_message = 0
+        async for msg in subscriber:
+            print(msg.raw_message.subject)
+            result_message = await msg.decode()
+
+            mock(result_message)
+
+            index_message += 1
+            if index_message >= len(expected_messages):
+                break
+
+    # Wait for first two tasks
+    await asyncio.gather(
+        asyncio.create_task(consume()),
+        asyncio.create_task(publish_test_message()),
+        return_exceptions=True,
+    )
+
+    calls = [call(msg) for msg in expected_messages]
+    mock.assert_has_calls(calls=calls)
+
+
+@pytest.mark.asyncio
+async def test_api_world_fixture(
+    my_world,
+) -> None:
+    """
+    API call on a world fixture with multiple nats/services instances
+    see https://fastapi.tiangolo.com/advanced/async-tests/
+    """
+    # br = my_world.br
+    br = my_world.broker
+    subscriber = my_world.subscriber
+
+    mock = MagicMock()
+    queue = "test"
+    expected_messages = ("test_message_1", "test_message_2")
+
+    base_url = f"http://0.0.0.0:{my_world.port}"
+    print(f"{base_url=}")
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"{base_url}/")
+        assert response.status_code == 200
+        assert response.json() == {"Hello": "World"}
+
+        # response = await client.get(f"{base_url}/healthcheck")
+        # assert response.status_code == 200
+        # assert response.json() == {"status": "OK"}
 
     async def publish_test_message():
         for msg in expected_messages:

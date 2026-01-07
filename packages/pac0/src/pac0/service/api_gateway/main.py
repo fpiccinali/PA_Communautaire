@@ -7,8 +7,8 @@ from faststream.nats.fastapi import NatsRouter, Logger
 
 app = FastAPI()
 
-router = NatsRouter("nats://localhost:4222")
-app.include_router(router)
+# router = NatsRouter("nats://localhost:4222")
+# app.include_router(router)
 
 
 class Incoming(BaseModel):
@@ -18,7 +18,7 @@ class Incoming(BaseModel):
 def call() -> bool:
     return True
 
-
+"""
 @router.after_startup
 async def test(app: FastAPI):
     await router.broker.publish("Startup!!!", "test")
@@ -33,7 +33,7 @@ async def hello(
 ):
     logger.info("Incoming value: %s, depends value: %s" % (message.m, dependency))
     return {"response": "Hello, NATS!"}
-
+"""
 
 @app.get("/")
 async def read_root():
@@ -54,8 +54,8 @@ async def flows_get():
 async def healthcheck():
     # await publisher.publish("Hi!", correlation_id=message.correlation_id)
     # TODO: see https://faststream.ag2.ai/latest/getting-started/observability/healthcheks/
-    await router.broker.publish("Hello, NATS!", "test")
-    await router.broker.publish("Hi!", correlation_id=message.correlation_id)
+    # await router.broker.publish("Hello, NATS!", "test")
+    # await router.broker.publish("Hi!", correlation_id=message.correlation_id)
 
     return {"status": "OK"}
 
