@@ -144,11 +144,14 @@ class PaContext:
         # start the nats service context
         self.nats = await run(port=0)
         await self.nats.__aenter__()
-        broker = NatsBroker(
+
+        # start the broker client
+        self.br = NatsBroker(
             f"nats://{self.nats.host}:{self.nats.port}", apply_types=True
         )
-        self.br = broker
-        self.subscriber = broker.subscriber("*")
+        self.br = await self.br.__aenter__()
+        self.subscriber = self.br.subscriber("*")
+        await self.br.start()
 
         # start the api service context
         self._uvicorn_api = uvicorn_context(self.api_app, port=0)
@@ -156,10 +159,7 @@ class PaContext:
         self.api_base_url = (
             f"http://{self.uvicorn_api.config.host}:{self.uvicorn_api.config.port}"
         )
-        print(f"{self.api_base_url=}")
-        # start the broker client
-        await self.br.__aenter__()
-        await self.br.start()
+        print(f"xxxxx {self.api_base_url=}")
 
         # start the services (faststream apps)
         self.services_tasks = [
@@ -185,14 +185,26 @@ class PaContext:
         # print("Services stopped")
 
         # close the broker client
-        await self.br.__aexit__(exc_type, exc_val, exc_tb)
+        try:
+            await self.br.__aexit__(exc_type, exc_val, exc_tb)
+        except Exception:
+            pass
         # close the api service context
         await self._uvicorn_api.__aexit__(exc_type, exc_val, exc_tb)
         # close the nats service context
-        await self.nats.__aexit__(exc_type, exc_val, exc_tb)
+        try:
+            await self.nats.__aexit__(exc_type, exc_val, exc_tb)
+        except Exception:
+            pass
 
     def HttpxAsyncClient(self):
         return httpx.AsyncClient(base_url=self.api_base_url)
+
+    def info(self):
+        return {
+            "nats_port": self.nats.port,
+            "api_port": self.uvicorn_api.config.port,
+        }
 
 
 class WorldContext:
@@ -286,12 +298,12 @@ async def test_api_world4_fixture(
     """
     API call on a 4 pac instances world
     """
-    print("xxxxxxxxxxxxx")
     for pac in my_world4.pacs:
         print(f"testing pac {pac} ...")
 
         async with pac.HttpxAsyncClient() as client:
             print(f"testing pac {pac} ...")
+            print(pac.info())
 
             response = await client.get("/")
             assert response.status_code == 200
