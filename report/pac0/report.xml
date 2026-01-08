@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="34" skipped="3" tests="43" time="0.212" timestamp="2026-01-08T20:08:22.637719+01:00" hostname="gpd"><testcase classname="tests.test_asyncio" name="test_0010" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="34" skipped="3" tests="43" time="0.206" timestamp="2026-01-08T22:35:03.986942+01:00" hostname="gpd"><testcase classname="tests.test_asyncio" name="test_0010" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
 You need to install a suitable plugin for your async framework, for example:
   - anyio
   - pytest-asyncio
@@ -40,7 +40,7 @@ You need to install a suitable plugin for your async framework, for example:
   - pytest-asyncio
   - pytest-tornasync
   - pytest-trio
-  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_api_world_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pac1'">my_world = &lt;async_generator object my_world at 0x709cc96ff300&gt;
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_api_world_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pac1'">my_world = &lt;async_generator object my_world at 0x709972eff300&gt;
 
     @pytest.mark.asyncio
     async def test_api_world_fixture(
@@ -54,7 +54,7 @@ You need to install a suitable plugin for your async framework, for example:
                    ^^^^^^^^^^^^^
 E       AttributeError: 'async_generator' object has no attribute 'pac1'
 
-tests/test_fastapi.py:286: AttributeError</failure></testcase><testcase classname="tests.test_fastapi" name="test_api_world4_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pacs'">my_world4 = &lt;async_generator object my_world4 at 0x709cc96ff760&gt;
+tests/test_fastapi.py:286: AttributeError</failure></testcase><testcase classname="tests.test_fastapi" name="test_api_world4_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pacs'">my_world4 = &lt;async_generator object my_world4 at 0x709972eff760&gt;
 
     @pytest.mark.asyncio
     async def test_api_world4_fixture(
@@ -67,7 +67,7 @@ tests/test_fastapi.py:286: AttributeError</failure></testcase><testcase classnam
                    ^^^^^^^^^^^^^^
 E       AttributeError: 'async_generator' object has no attribute 'pacs'
 
-tests/test_fastapi.py:303: AttributeError</failure></testcase><testcase classname="tests.test_faststream" name="test_validation_str_ok" time="0.007" /><testcase classname="tests.test_faststream" name="test_validation_str_err" time="0.006" /><testcase classname="tests.test_faststream" name="test_connect_only" time="0.002" /><testcase classname="tests.test_faststream" name="test_sub_embed" time="0.003" /><testcase classname="tests.test_faststream" name="test_sub_embed_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'publish'">my_test_nats_broker = &lt;async_generator object my_test_nats_broker at 0x709cc951a260&gt;, my_test_app = &lt;async_generator object my_test_app at 0x709cc951a340&gt;
+tests/test_fastapi.py:303: AttributeError</failure></testcase><testcase classname="tests.test_faststream" name="test_validation_str_ok" time="0.008" /><testcase classname="tests.test_faststream" name="test_validation_str_err" time="0.005" /><testcase classname="tests.test_faststream" name="test_connect_only" time="0.002" /><testcase classname="tests.test_faststream" name="test_sub_embed" time="0.002" /><testcase classname="tests.test_faststream" name="test_sub_embed_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'publish'">my_test_nats_broker = &lt;async_generator object my_test_nats_broker at 0x709972d1a260&gt;, my_test_app = &lt;async_generator object my_test_app at 0x709972d1a340&gt;
 
     @pytest.mark.filterwarnings("ignore::RuntimeWarning")
     @pytest.mark.asyncio
@@ -76,7 +76,7 @@ tests/test_fastapi.py:303: AttributeError</failure></testcase><testcase classnam
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       AttributeError: 'async_generator' object has no attribute 'publish'
 
-tests/test_faststream.py:109: AttributeError</failure></testcase><testcase classname="tests.test_faststream" name="test_pubsub_nats" time="0.010" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture" time="0.001"><failure message="TypeError: cannot unpack non-iterable async_generator object">my_broker_fixture = &lt;async_generator object my_broker_fixture at 0x709cc93a50e0&gt;
+tests/test_faststream.py:109: AttributeError</failure></testcase><testcase classname="tests.test_faststream" name="test_pubsub_nats" time="0.010" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture" time="0.001"><failure message="TypeError: cannot unpack non-iterable async_generator object">my_broker_fixture = &lt;async_generator object my_broker_fixture at 0x709972ba50e0&gt;
 
     @pytest.mark.filterwarnings("ignore::RuntimeWarning")
     @pytest.mark.asyncio
@@ -88,7 +88,7 @@ tests/test_faststream.py:109: AttributeError</failure></testcase><testcase class
         ^^^^^^^^^^^^^^
 E       TypeError: cannot unpack non-iterable async_generator object
 
-tests/test_faststream.py:192: TypeError</failure></testcase><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture_class" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:280: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_pubsub_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:470: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_api_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:513: fail when running all tests</skipped></testcase><testcase classname="tests.test_fixture" name="test_world1pac" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pac1'">world1pac = &lt;async_generator object world1pac at 0x709cc93d5ee0&gt;
+tests/test_faststream.py:192: TypeError</failure></testcase><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture_class" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:280: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_pubsub_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:470: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_api_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:513: fail when running all tests</skipped></testcase><testcase classname="tests.test_fixture" name="test_world1pac" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pac1'">world1pac = &lt;async_generator object world1pac at 0x709972bd5ee0&gt;
 
     @pytest.mark.asyncio
     async def test_world1pac(
@@ -101,7 +101,7 @@ tests/test_faststream.py:192: TypeError</failure></testcase><testcase classname=
                    ^^^^^^^^^^^^^^
 E       AttributeError: 'async_generator' object has no attribute 'pac1'
 
-tests/test_fixture.py:12: AttributeError</failure></testcase><testcase classname="tests.test_fixture" name="test_world4pac" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pacs'">world4pac = &lt;async_generator object world4pac at 0x709cc93d6f80&gt;
+tests/test_fixture.py:12: AttributeError</failure></testcase><testcase classname="tests.test_fixture" name="test_world4pac" time="0.000"><failure message="AttributeError: 'async_generator' object has no attribute 'pacs'">world4pac = &lt;async_generator object world4pac at 0x709972bd6f80&gt;
 
     @pytest.mark.asyncio
     async def test_world4pac(
@@ -156,7 +156,7 @@ You need to install a suitable plugin for your async framework, for example:
   - pytest-asyncio
   - pytest-tornasync
   - pytest-trio
-  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04_broker_pubsub_basic" time="0.001"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04_broker_pubsub_basic" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
 You need to install a suitable plugin for your async framework, for example:
   - anyio
   - pytest-asyncio

@@ -15,10 +15,41 @@ Usage:
 
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-def run_tests(package_name: str, package_path: Path, report_dir: Path) -> int:
+def parse_junit_xml(xml_path: Path) -> tuple[int, int]:
+    """Parse JUnit XML report to extract test counts.
+
+    Args:
+        xml_path: Path to the JUnit XML report
+
+    Returns:
+        Tuple of (passed_count, failed_count)
+    """
+    if not xml_path.exists():
+        return 0, 0
+
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    # JUnit XML has testsuite element with tests, failures, errors attributes
+    total_tests = 0
+    total_failures = 0
+    total_errors = 0
+
+    for testsuite in root.iter("testsuite"):
+        total_tests += int(testsuite.get("tests", 0))
+        total_failures += int(testsuite.get("failures", 0))
+        total_errors += int(testsuite.get("errors", 0))
+
+    passed = total_tests - total_failures - total_errors
+    failed = total_failures + total_errors
+    return passed, failed
+
+
+def run_tests(package_name: str, package_path: Path, report_dir: Path) -> tuple[int, int, int]:
     """Run pytest for a package and generate reports.
 
     Args:
@@ -27,7 +58,7 @@ def run_tests(package_name: str, package_path: Path, report_dir: Path) -> int:
         report_dir: Path to the report output directory
 
     Returns:
-        pytest exit code
+        Tuple of (pytest exit code, passed count, failed count)
     """
     report_dir.mkdir(parents=True, exist_ok=True)
 
@@ -58,7 +89,11 @@ def run_tests(package_name: str, package_path: Path, report_dir: Path) -> int:
     ]
 
     result = subprocess.run(cmd, cwd=package_path)
-    return result.returncode
+
+    # Parse the XML report to get test counts
+    passed, failed = parse_junit_xml(xml_report)
+
+    return result.returncode, passed, failed
 
 
 def main() -> int:
@@ -71,18 +106,18 @@ def main() -> int:
         ("pac-bdd", root_dir / "packages" / "pac-bdd"),
     ]
 
-    # Track exit codes
-    exit_codes = []
+    # Track exit codes and test counts
+    results = []  # List of (exit_code, passed, failed)
 
     for pkg_name, pkg_path in packages:
         if not pkg_path.exists():
             print(f"Warning: Package path does not exist: {pkg_path}")
-            exit_codes.append(1)
+            results.append((1, 0, 0))
             continue
 
         report_dir = report_base / pkg_name
-        exit_code = run_tests(pkg_name, pkg_path, report_dir)
-        exit_codes.append(exit_code)
+        exit_code, passed, failed = run_tests(pkg_name, pkg_path, report_dir)
+        results.append((exit_code, passed, failed))
 
     # Summary
     print(f"\n{'=' * 60}")
@@ -90,12 +125,19 @@ def main() -> int:
     print(f"{'=' * 60}")
 
     all_passed = True
-    for (pkg_name, _), code in zip(packages, exit_codes):
+    total_ok = 0
+    total_ko = 0
+
+    for (pkg_name, _), (code, passed, failed) in zip(packages, results):
         status = "PASSED" if code == 0 else f"FAILED (exit code: {code})"
-        print(f"  {pkg_name}: {status}")
+        print(f"  {pkg_name}: {status} (OK: {passed}, KO: {failed})")
         if code != 0:
             all_passed = False
+        total_ok += passed
+        total_ko += failed
 
+    total = total_ok + total_ko
+    print(f"\nTotal: OK: {total_ok}/{total}, KO: {total_ko}/{total}")
     print(f"\nReports generated in: {report_base}")
     print(f"  - {report_base}/pac0/report.html")
     print(f"  - {report_base}/pac0/report.xml")
