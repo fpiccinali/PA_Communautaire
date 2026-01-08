@@ -33,6 +33,7 @@ def run_tests(package_name: str, package_path: Path, report_dir: Path) -> int:
 
     xml_report = report_dir / "report.xml"
     html_report = report_dir / "report.html"
+    md_report = report_dir / "report.md"
 
     print(f"\n{'=' * 60}")
     print(f"Running tests for: {package_name}")
@@ -44,10 +45,16 @@ def run_tests(package_name: str, package_path: Path, report_dir: Path) -> int:
         "uv",
         "run",
         "pytest",
+        "-v",
         f"--junitxml={xml_report}",
         f"--html={html_report}",
         "--self-contained-html",
-        "-v",
+        "--md-report",
+        "--md-report-flavor=gfm",
+        '--md-report-exclude-outcomes="passed skipped"',
+        "--md-report-verbose=1",
+        "--md-report-zeros=empty",
+        f"--md-report-output={md_report}",
     ]
 
     result = subprocess.run(cmd, cwd=package_path)
@@ -92,8 +99,10 @@ def main() -> int:
     print(f"\nReports generated in: {report_base}")
     print(f"  - {report_base}/pac0/report.html")
     print(f"  - {report_base}/pac0/report.xml")
+    print(f"  - {report_base}/pac0/report.md")
     print(f"  - {report_base}/pac-bdd/report.html")
     print(f"  - {report_base}/pac-bdd/report.xml")
+    print(f"  - {report_base}/pac-bdd/report.md")
 
     # Return non-zero if any tests failed
     return 0 if all_passed else 1

@@ -1,1 +1,243 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="3" tests="43" time="26.800" timestamp="2026-01-08T19:11:00.709286+01:00" hostname="gpd"><testcase classname="tests.test_asyncio" name="test_0010" time="3.005" /><testcase classname="tests.test_asyncio" name="test_0020" time="2.005" /><testcase classname="tests.test_asyncio" name="test_0030" time="1.003" /><testcase classname="tests.test_fastapi" name="test_00100" time="0.388" /><testcase classname="tests.test_fastapi" name="test_00110" time="0.338" /><testcase classname="tests.test_fastapi" name="test_00120" time="0.347" /><testcase classname="tests.test_fastapi" name="test_00130" time="0.337" /><testcase classname="tests.test_fastapi" name="test_api_world_fixture" time="3.352" /><testcase classname="tests.test_fastapi" name="test_api_world4_fixture" time="4.429" /><testcase classname="tests.test_faststream" name="test_validation_str_ok" time="0.017" /><testcase classname="tests.test_faststream" name="test_validation_str_err" time="0.009" /><testcase classname="tests.test_faststream" name="test_connect_only" time="0.004" /><testcase classname="tests.test_faststream" name="test_sub_embed" time="0.005" /><testcase classname="tests.test_faststream" name="test_sub_embed_fixture" time="0.007" /><testcase classname="tests.test_faststream" name="test_pubsub_nats" time="0.013" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture" time="0.013" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture_class" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:280: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_pubsub_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:470: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_api_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:513: fail when running all tests</skipped></testcase><testcase classname="tests.test_fixture" name="test_world1pac" time="3.359" /><testcase classname="tests.test_fixture" name="test_world4pac" time="4.471" /><testcase classname="tests.test_nats" name="test_nats" time="0.011" /><testcase classname="tests.test_nats" name="test_nats_context_manager" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_01_nats_server_manual_lifecycle" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02_nats_server_context_manager" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02b_nats_server_context_wrapper" time="0.010" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03_broker_connection" time="0.011" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03b_broker_context_wrapper" time="0.014" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04_broker_pubsub_basic" time="0.018" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04b_broker_pubsub_wildcard" time="0.013" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05_single_service_with_readiness" time="0.517" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05b_service_readiness_timeout" time="0.115" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06_multiple_services_pool" time="0.022" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06b_real_services_pool" time="0.038" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07_fastapi_with_services" time="0.321" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07b_healthcheck_with_services" time="0.321" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08_full_pa_context" time="0.322" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08b_pa_context_isolation" time="0.636" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09_multi_pa_pool_2pa" time="0.470" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09b_multi_pa_pool_4pa" time="0.365" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_10_cross_pa_info" time="0.363" /><testcase classname="tests.test_test" name="test_dummy_async" time="0.001" /><testcase classname="tests.test_test" name="test_dummy" time="0.001" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="34" skipped="3" tests="43" time="0.212" timestamp="2026-01-08T20:08:22.637719+01:00" hostname="gpd"><testcase classname="tests.test_asyncio" name="test_0010" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_asyncio" name="test_0020" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_asyncio" name="test_0030" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_00100" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_00110" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_00120" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_00130" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_fastapi" name="test_api_world_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pac1'">my_world = &lt;async_generator object my_world at 0x709cc96ff300&gt;
+
+    @pytest.mark.asyncio
+    async def test_api_world_fixture(
+        my_world,
+    ) -&gt; None:
+        """
+        API call on a world fixture with multiple nats/services instances
+        see https://fastapi.tiangolo.com/advanced/async-tests/
+        """
+&gt;       async with my_world.pac1.HttpxAsyncClient() as client:
+                   ^^^^^^^^^^^^^
+E       AttributeError: 'async_generator' object has no attribute 'pac1'
+
+tests/test_fastapi.py:286: AttributeError</failure></testcase><testcase classname="tests.test_fastapi" name="test_api_world4_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pacs'">my_world4 = &lt;async_generator object my_world4 at 0x709cc96ff760&gt;
+
+    @pytest.mark.asyncio
+    async def test_api_world4_fixture(
+        my_world4,
+    ) -&gt; None:
+        """
+        API call on a 4 pac instances world
+        """
+&gt;       for pac in my_world4.pacs:
+                   ^^^^^^^^^^^^^^
+E       AttributeError: 'async_generator' object has no attribute 'pacs'
+
+tests/test_fastapi.py:303: AttributeError</failure></testcase><testcase classname="tests.test_faststream" name="test_validation_str_ok" time="0.007" /><testcase classname="tests.test_faststream" name="test_validation_str_err" time="0.006" /><testcase classname="tests.test_faststream" name="test_connect_only" time="0.002" /><testcase classname="tests.test_faststream" name="test_sub_embed" time="0.003" /><testcase classname="tests.test_faststream" name="test_sub_embed_fixture" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'publish'">my_test_nats_broker = &lt;async_generator object my_test_nats_broker at 0x709cc951a260&gt;, my_test_app = &lt;async_generator object my_test_app at 0x709cc951a340&gt;
+
+    @pytest.mark.filterwarnings("ignore::RuntimeWarning")
+    @pytest.mark.asyncio
+    async def test_sub_embed_fixture(my_test_nats_broker, my_test_app):
+&gt;       await my_test_nats_broker.publish("hello2", subject="test-subject")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'async_generator' object has no attribute 'publish'
+
+tests/test_faststream.py:109: AttributeError</failure></testcase><testcase classname="tests.test_faststream" name="test_pubsub_nats" time="0.010" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture" time="0.001"><failure message="TypeError: cannot unpack non-iterable async_generator object">my_broker_fixture = &lt;async_generator object my_broker_fixture at 0x709cc93a50e0&gt;
+
+    @pytest.mark.filterwarnings("ignore::RuntimeWarning")
+    @pytest.mark.asyncio
+    async def test_pubsub_nats_fixture(my_broker_fixture) -&gt; None:
+        """
+        pub/sub on a test nats instance via basic fixture
+        """
+&gt;       br, subscriber = my_broker_fixture
+        ^^^^^^^^^^^^^^
+E       TypeError: cannot unpack non-iterable async_generator object
+
+tests/test_faststream.py:192: TypeError</failure></testcase><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture_class" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:280: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_pubsub_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:470: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_api_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:513: fail when running all tests</skipped></testcase><testcase classname="tests.test_fixture" name="test_world1pac" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pac1'">world1pac = &lt;async_generator object world1pac at 0x709cc93d5ee0&gt;
+
+    @pytest.mark.asyncio
+    async def test_world1pac(
+        world1pac,
+    ) -&gt; None:
+        """
+        world1pac fixture
+        """
+&gt;       async with world1pac.pac1.HttpxAsyncClient() as client:
+                   ^^^^^^^^^^^^^^
+E       AttributeError: 'async_generator' object has no attribute 'pac1'
+
+tests/test_fixture.py:12: AttributeError</failure></testcase><testcase classname="tests.test_fixture" name="test_world4pac" time="0.001"><failure message="AttributeError: 'async_generator' object has no attribute 'pacs'">world4pac = &lt;async_generator object world4pac at 0x709cc93d6f80&gt;
+
+    @pytest.mark.asyncio
+    async def test_world4pac(
+        world4pac,
+    ) -&gt; None:
+        """
+        world4pac fixture
+        """
+&gt;       for pac in world4pac.pacs:
+                   ^^^^^^^^^^^^^^
+E       AttributeError: 'async_generator' object has no attribute 'pacs'
+
+tests/test_fixture.py:29: AttributeError</failure></testcase><testcase classname="tests.test_nats" name="test_nats" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_nats" name="test_nats_context_manager" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_01_nats_server_manual_lifecycle" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02_nats_server_context_manager" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02b_nats_server_context_wrapper" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03_broker_connection" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03b_broker_context_wrapper" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04_broker_pubsub_basic" time="0.001"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04b_broker_pubsub_wildcard" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05_single_service_with_readiness" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05b_service_readiness_timeout" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06_multiple_services_pool" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06b_real_services_pool" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07_fastapi_with_services" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07b_healthcheck_with_services" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08_full_pa_context" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08b_pa_context_isolation" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09_multi_pa_pool_2pa" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09b_multi_pa_pool_4pa" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_10_cross_pa_info" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_test" name="test_dummy_async" time="0.000"><failure message="Failed: async def functions are not natively supported.&#10;You need to install a suitable plugin for your async framework, for example:&#10;  - anyio&#10;  - pytest-asyncio&#10;  - pytest-tornasync&#10;  - pytest-trio&#10;  - pytest-twisted">async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted</failure></testcase><testcase classname="tests.test_test" name="test_dummy" time="0.000" /></testsuite></testsuites>

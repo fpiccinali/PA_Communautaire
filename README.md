@@ -107,10 +107,10 @@ Pour exécuter tous les tests et générer des rapports:
 
 Cette commande exécute pytest dans les deux packages (`pac0` et `pac-bdd`) et génère des rapports dans le dossier `/report`:
 
-| Package | Rapport HTML | Rapport JUnit XML |
-|---------|--------------|-------------------|
-| pac0 | [report/pac0/report.html](report/pac0/report.html) | [report/pac0/report.xml](report/pac0/report.xml) |
-| pac-bdd | [report/pac-bdd/report.html](report/pac-bdd/report.html) | [report/pac-bdd/report.xml](report/pac-bdd/report.xml) |
+| Package | Rapport MD |Rapport HTML | Rapport JUnit XML |
+|---------|--------------|--------------|-------------------|
+| pac0 | [report.md](report/pac0/report.md) | [report.html](report/pac0/report.html) | [report/pac0/report.xml](report/pac0/report.xml) |
+| pac-bdd | [report.md](report/pac-bdd/report.md)| [report.html](report/pac-bdd/report.html) | [report/pac-bdd/report.xml](report/pac-bdd/report.xml) |
 
 Pour exécuter les tests d'un seul package:
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="20" skipped="0" tests="39" time="43.837" timestamp="2026-01-08T19:08:52.886023+01:00" hostname="gpd"><testcase classname="test_fixture" name="test_dummy_fixture" time="0.000" /><testcase classname="test_fixture" name="test_dummy_async_fixture" time="0.001" /><testcase classname="test_openapi" name="test_swagger_flow_service" time="0.000"><failure message="NotImplementedError: swagger compliance non testé">def test_swagger_flow_service():
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="20" skipped="0" tests="39" time="43.719" timestamp="2026-01-08T20:08:23.637550+01:00" hostname="gpd"><testcase classname="test_fixture" name="test_dummy_fixture" time="0.000" /><testcase classname="test_fixture" name="test_dummy_async_fixture" time="0.001" /><testcase classname="test_openapi" name="test_swagger_flow_service" time="0.000"><failure message="NotImplementedError: swagger compliance non testé">def test_swagger_flow_service():
         url = '???'
 &gt;       _test_swagger(
             url,
@@ -72,7 +72,7 @@ test_openapi.py:14: NotImplementedError</failure></testcase><testcase classname=
     |     task1 = tg.create_task(api_gateway_main.app.run())
     |                            ^^^^^^^^^^^^^^^^^^^^^^^^
     | AttributeError: 'FastAPI' object has no attribute 'run'
-    +------------------------------------</failure></testcase><testcase classname="test_scenario" name="test_trackingid_fourni" time="8.384"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
+    +------------------------------------</failure></testcase><testcase classname="test_scenario" name="test_trackingid_fourni" time="8.383"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
     def map_httpcore_exceptions() -&gt; typing.Iterator[None]:
         global HTTPCORE_EXC_MAP
         if len(HTTPCORE_EXC_MAP) == 0:
@@ -125,8 +125,8 @@ E                   httpcore.ReadTimeout: timed out
 
 The above exception was the direct cause of the following exception:
 
-fixturefunc = &lt;function api_call at 0x7b4026975760&gt;, request = &lt;FixtureRequest for &lt;Function test_trackingid_fourni&gt;&gt;
-kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7b4026891550&gt;}
+fixturefunc = &lt;function api_call at 0x7fe79fa647c0&gt;, request = &lt;FixtureRequest for &lt;Function test_trackingid_fourni&gt;&gt;
+kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7fe79f9ac050&gt;}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -145,7 +145,7 @@ kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fi
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/api.py:33: in api_call
     response = httpx.get(world1pac.pac1.api_base_url)
@@ -200,7 +200,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 &gt;           raise mapped_exc(message) from exc
 E           httpx.ReadTimeout: timed out
 
-.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_trackingid_absent" time="8.370"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
+.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_trackingid_absent" time="8.353"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
     def map_httpcore_exceptions() -&gt; typing.Iterator[None]:
         global HTTPCORE_EXC_MAP
         if len(HTTPCORE_EXC_MAP) == 0:
@@ -253,8 +253,8 @@ E                   httpcore.ReadTimeout: timed out
 
 The above exception was the direct cause of the following exception:
 
-fixturefunc = &lt;function api_call at 0x7b4026975760&gt;, request = &lt;FixtureRequest for &lt;Function test_trackingid_absent&gt;&gt;
-kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7b40268c5810&gt;}
+fixturefunc = &lt;function api_call at 0x7fe79fa647c0&gt;, request = &lt;FixtureRequest for &lt;Function test_trackingid_absent&gt;&gt;
+kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7fe79f9b7250&gt;}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -273,7 +273,7 @@ kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fi
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/api.py:33: in api_call
     response = httpx.get(world1pac.pac1.api_base_url)
@@ -328,7 +328,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 &gt;           raise mapped_exc(message) from exc
 E           httpx.ReadTimeout: timed out
 
-.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_trackingid_doublon" time="8.358"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
+.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_trackingid_doublon" time="8.366"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
     def map_httpcore_exceptions() -&gt; typing.Iterator[None]:
         global HTTPCORE_EXC_MAP
         if len(HTTPCORE_EXC_MAP) == 0:
@@ -381,8 +381,8 @@ E                   httpcore.ReadTimeout: timed out
 
 The above exception was the direct cause of the following exception:
 
-fixturefunc = &lt;function api_call at 0x7b4026975760&gt;, request = &lt;FixtureRequest for &lt;Function test_trackingid_doublon&gt;&gt;
-kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7b4025f5d310&gt;}
+fixturefunc = &lt;function api_call at 0x7fe79fa647c0&gt;, request = &lt;FixtureRequest for &lt;Function test_trackingid_doublon&gt;&gt;
+kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7fe79f96f110&gt;}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -401,7 +401,7 @@ kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fi
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/api.py:33: in api_call
     response = httpx.get(world1pac.pac1.api_base_url)
@@ -456,7 +456,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 &gt;           raise mapped_exc(message) from exc
 E           httpx.ReadTimeout: timed out
 
-.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_contrôle_sha256" time="8.371"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
+.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_contrôle_sha256" time="8.367"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
     def map_httpcore_exceptions() -&gt; typing.Iterator[None]:
         global HTTPCORE_EXC_MAP
         if len(HTTPCORE_EXC_MAP) == 0:
@@ -509,8 +509,8 @@ E                   httpcore.ReadTimeout: timed out
 
 The above exception was the direct cause of the following exception:
 
-fixturefunc = &lt;function api_call at 0x7b4026975760&gt;, request = &lt;FixtureRequest for &lt;Function test_contrôle_sha256&gt;&gt;
-kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7b4025ed1940&gt;}
+fixturefunc = &lt;function api_call at 0x7fe79fa647c0&gt;, request = &lt;FixtureRequest for &lt;Function test_contrôle_sha256&gt;&gt;
+kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7fe79efe5f30&gt;}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -529,7 +529,7 @@ kwargs = {'path': '/flows', 'verb': 'POST', 'world1pac': &lt;pac0.shared.test.fi
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/api.py:33: in api_call
     response = httpx.get(world1pac.pac1.api_base_url)
@@ -584,7 +584,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 &gt;           raise mapped_exc(message) from exc
 E           httpx.ReadTimeout: timed out
 
-.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_healthcheck_api_ok" time="8.371"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
+.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_healthcheck_api_ok" time="8.369"><failure message="httpx.ReadTimeout: timed out">@contextlib.contextmanager
     def map_httpcore_exceptions() -&gt; typing.Iterator[None]:
         global HTTPCORE_EXC_MAP
         if len(HTTPCORE_EXC_MAP) == 0:
@@ -637,8 +637,8 @@ E                   httpcore.ReadTimeout: timed out
 
 The above exception was the direct cause of the following exception:
 
-fixturefunc = &lt;function api_call at 0x7b4026975760&gt;, request = &lt;FixtureRequest for &lt;Function test_healthcheck_api_ok&gt;&gt;
-kwargs = {'path': '/healthcheck', 'verb': 'GET', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7b4025ed2fd0&gt;}
+fixturefunc = &lt;function api_call at 0x7fe79fa647c0&gt;, request = &lt;FixtureRequest for &lt;Function test_healthcheck_api_ok&gt;&gt;
+kwargs = {'path': '/healthcheck', 'verb': 'GET', 'world1pac': &lt;pac0.shared.test.fixture.WorldContext object at 0x7fe79f9d3360&gt;}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -657,7 +657,7 @@ kwargs = {'path': '/healthcheck', 'verb': 'GET', 'world1pac': &lt;pac0.shared.te
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/api.py:33: in api_call
     response = httpx.get(world1pac.pac1.api_base_url)
@@ -712,7 +712,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 &gt;           raise mapped_exc(message) from exc
 E           httpx.ReadTimeout: timed out
 
-.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_controle_format_facturx" time="0.001"><failure message="NotImplementedError">fixturefunc = &lt;function control_invoice at 0x7b40269a05e0&gt;, request = &lt;FixtureRequest for &lt;Function test_controle_format_facturx&gt;&gt;, kwargs = {}
+.venv/lib/python3.13/site-packages/httpx/_transports/default.py:118: ReadTimeout</failure></testcase><testcase classname="test_scenario" name="test_controle_format_facturx" time="0.002"><failure message="NotImplementedError">fixturefunc = &lt;function control_invoice at 0x7fe79fa67600&gt;, request = &lt;FixtureRequest for &lt;Function test_controle_format_facturx&gt;&gt;, kwargs = {}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -731,7 +731,7 @@ E           httpx.ReadTimeout: timed out
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     @when(
@@ -744,7 +744,7 @@ E       NotImplementedError
 src/pac_bdd/tobeimplemented.py:26: NotImplementedError</failure></testcase><testcase classname="test_scenario" name="test_démarrage_dun_serveur_nats" time="0.003"><failure message="pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Given &quot;un serveur NATS disponible&quot;. Line 18 in scenario &quot;Démarrage d'un serveur NATS&quot; in the feature &quot;/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/service_lifecycle.feature&quot;">E   pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Given "un serveur NATS disponible". Line 18 in scenario "Démarrage d'un serveur NATS" in the feature "/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/service_lifecycle.feature"
 All traceback entries are hidden. Pass `--full-trace` to see hidden and internal frames.</failure></testcase><testcase classname="test_scenario" name="test_connexion_dun_broker_au_serveur_nats" time="0.001"><failure message="pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Given &quot;un serveur NATS disponible&quot;. Line 22 in scenario &quot;Connexion d'un broker au serveur NATS&quot; in the feature &quot;/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/service_lifecycle.feature&quot;">E   pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Given "un serveur NATS disponible". Line 22 in scenario "Connexion d'un broker au serveur NATS" in the feature "/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/service_lifecycle.feature"
 All traceback entries are hidden. Pass `--full-trace` to see hidden and internal frames.</failure></testcase><testcase classname="test_scenario" name="test_démarrage_de_plusieurs_pa" time="0.001"><failure message="pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Given &quot;2 PA démarrées&quot;. Line 31 in scenario &quot;Démarrage de plusieurs PA&quot; in the feature &quot;/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/service_lifecycle.feature&quot;">E   pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Given "2 PA démarrées". Line 31 in scenario "Démarrage de plusieurs PA" in the feature "/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/service_lifecycle.feature"
-All traceback entries are hidden. Pass `--full-trace` to see hidden and internal frames.</failure></testcase><testcase classname="test_scenario" name="test_healthcheck_message" time="0.015"><failure message="AssertionError: Expected 'mock' to be called once. Called 0 times.">fixturefunc = &lt;function esb_sub_msg at 0x7b4026977c40&gt;, request = &lt;FixtureRequest for &lt;Function test_healthcheck_message&gt;&gt;, kwargs = {'world': WorldContext()}
+All traceback entries are hidden. Pass `--full-trace` to see hidden and internal frames.</failure></testcase><testcase classname="test_scenario" name="test_healthcheck_message" time="0.012"><failure message="AssertionError: Expected 'mock' to be called once. Called 0 times.">fixturefunc = &lt;function esb_sub_msg at 0x7fe79fa66ca0&gt;, request = &lt;FixtureRequest for &lt;Function test_healthcheck_message&gt;&gt;, kwargs = {'world': WorldContext()}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -763,7 +763,7 @@ All traceback entries are hidden. Pass `--full-trace` to see hidden and internal
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/esb.py:14: in wrapper
     return asyncio.run(fn(*args, **kwargs))
@@ -781,7 +781,7 @@ src/pac_bdd/esb.py:72: in esb_sub_msg
     handle_all.mock.assert_called_once_with("toto")
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;MagicMock id='135515455656624'&gt;, args = ('toto',), kwargs = {}, msg = "Expected 'mock' to be called once. Called 0 times."
+self = &lt;MagicMock id='140632794332336'&gt;, args = ('toto',), kwargs = {}, msg = "Expected 'mock' to be called once. Called 0 times."
 
     def assert_called_once_with(self, /, *args, **kwargs):
         """assert that the mock was called exactly once and that that call was
@@ -795,7 +795,7 @@ self = &lt;MagicMock id='135515455656624'&gt;, args = ('toto',), kwargs = {}, ms
 E           AssertionError: Expected 'mock' to be called once. Called 0 times.
 
 ../../../../.local/share/uv/python/cpython-3.13.2-linux-x86_64-gnu/lib/python3.13/unittest/mock.py:988: AssertionError</failure></testcase><testcase classname="test_scenario" name="test_canal_pingpong" time="0.007"><failure message="pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Then &quot;j'obtiens le message 'hello' sur le canal 'pong'&quot;. Line 10 in scenario &quot;Canal ping/pong&quot; in the feature &quot;/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/esb.feature&quot;">E   pytest_bdd.exceptions.StepDefinitionNotFoundError: Step definition is not found: Then "j'obtiens le message 'hello' sur le canal 'pong'". Line 10 in scenario "Canal ping/pong" in the feature "/home/philippe/src/PA_Communautaire/docs/briques/02-esb-central/esb.feature"
-All traceback entries are hidden. Pass `--full-trace` to see hidden and internal frames.</failure></testcase><testcase classname="test_scenario" name="test_pa" time="0.003"><failure message="NotImplementedError">fixturefunc = &lt;function job_status at 0x7b40269a0f40&gt;, request = &lt;FixtureRequest for &lt;Function test_pa&gt;&gt;, kwargs = {'status': 'accepted'}
+All traceback entries are hidden. Pass `--full-trace` to see hidden and internal frames.</failure></testcase><testcase classname="test_scenario" name="test_pa" time="0.003"><failure message="NotImplementedError">fixturefunc = &lt;function job_status at 0x7fe79fa67f60&gt;, request = &lt;FixtureRequest for &lt;Function test_pa&gt;&gt;, kwargs = {'status': 'accepted'}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -814,7 +814,7 @@ All traceback entries are hidden. Pass `--full-trace` to see hidden and internal
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 status = 'accepted'
@@ -827,7 +827,7 @@ status = 'accepted'
 &gt;       raise NotImplementedError()
 E       NotImplementedError
 
-src/pac_bdd/tobeimplemented.py:56: NotImplementedError</failure></testcase><testcase classname="test_scenario" name="test_résolution_sml_réussie_pour_un_participant_enregistré" time="0.003" /><testcase classname="test_scenario" name="test_résolution_sml_échouée__participant_non_enregistré" time="0.002" /><testcase classname="test_scenario" name="test_récupération_métadonnées_smp_réussie" time="0.003" /><testcase classname="test_scenario" name="test_smp_ne_supporte_pas_le_document_type_demandé" time="0.003" /><testcase classname="test_scenario" name="test_lookup_peppol_complet_réussi_par_siren" time="0.003" /><testcase classname="test_scenario" name="test_lookup_peppol_complet_réussi_par_siret" time="0.003" /><testcase classname="test_scenario" name="test_lookup_peppol_échoué__participant_introuvable" time="0.003" /><testcase classname="test_scenario" name="test_routage_facture_vers_pa_distante_via_peppol" time="0.005" /><testcase classname="test_scenario" name="test_routage_facture__destinataire_local_pas_de_lookup_peppol" time="0.004" /><testcase classname="test_scenario" name="test_routage_facture__fallback_vers_ppf" time="0.005" /><testcase classname="test_scenario" name="test_validation_du_certificat_peppol" time="0.003" /><testcase classname="test_scenario" name="test_vérification_de_la_signature_smp" time="0.003" /><testcase classname="test_scenario" name="test_vérification_des_document_types_supportés" time="0.002"><failure message="TypeError: list indices must be integers or slices, not str">fixturefunc = &lt;function check_document_types_table at 0x7b40269e25c0&gt;, request = &lt;FixtureRequest for &lt;Function test_vérification_des_document_types_supportés&gt;&gt;
+src/pac_bdd/tobeimplemented.py:56: NotImplementedError</failure></testcase><testcase classname="test_scenario" name="test_résolution_sml_réussie_pour_un_participant_enregistré" time="0.003" /><testcase classname="test_scenario" name="test_résolution_sml_échouée__participant_non_enregistré" time="0.002" /><testcase classname="test_scenario" name="test_récupération_métadonnées_smp_réussie" time="0.003" /><testcase classname="test_scenario" name="test_smp_ne_supporte_pas_le_document_type_demandé" time="0.003" /><testcase classname="test_scenario" name="test_lookup_peppol_complet_réussi_par_siren" time="0.002" /><testcase classname="test_scenario" name="test_lookup_peppol_complet_réussi_par_siret" time="0.002" /><testcase classname="test_scenario" name="test_lookup_peppol_échoué__participant_introuvable" time="0.003" /><testcase classname="test_scenario" name="test_routage_facture_vers_pa_distante_via_peppol" time="0.005" /><testcase classname="test_scenario" name="test_routage_facture__destinataire_local_pas_de_lookup_peppol" time="0.004" /><testcase classname="test_scenario" name="test_routage_facture__fallback_vers_ppf" time="0.004" /><testcase classname="test_scenario" name="test_validation_du_certificat_peppol" time="0.003" /><testcase classname="test_scenario" name="test_vérification_de_la_signature_smp" time="0.002" /><testcase classname="test_scenario" name="test_vérification_des_document_types_supportés" time="0.002"><failure message="TypeError: list indices must be integers or slices, not str">fixturefunc = &lt;function check_document_types_table at 0x7fe79fab5620&gt;, request = &lt;FixtureRequest for &lt;Function test_vérification_des_document_types_supportés&gt;&gt;
 kwargs = {'datatable': [['document_type'], ['urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice']], 'peppol_contex...ss Point PEPPOL', technical_contact_url=None), 'registered': True, 'scheme': '0009', 'siren': '123456789', ...}}, ...}}
 
     def call_fixture_func(
@@ -847,7 +847,7 @@ kwargs = {'datatable': [['document_type'], ['urn:oasis:names:specification:ubl:s
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 peppol_context = {'dns_error': None, 'dns_responses': {'B-8874539cbfa5af29d56194be355ac1b1.iso6523-actorid-upis.acc.edelivery.tech.ec.e...ess Point PEPPOL', technical_contact_url=None), 'registered': True, 'scheme': '0009', 'siren': '123456789', ...}}, ...}
@@ -860,7 +860,7 @@ datatable = [['document_type'], ['urn:oasis:names:specification:ubl:schema:xsd:I
                           ^^^^^^^^^^^^^^^^^^^^
 E       TypeError: list indices must be integers or slices, not str
 
-src/pac_bdd/peppol.py:827: TypeError</failure></testcase><testcase classname="test_scenario" name="test_timeout_lors_du_lookup_sml" time="0.003" /><testcase classname="test_scenario" name="test_smp_temporairement_indisponible" time="0.003" /><testcase classname="test_scenario" name="test_retry_automatique_après_échec_temporaire" time="0.003" /><testcase classname="test_scenario" name="test_échec_définitif_après_plusieurs_retries" time="0.003" /><testcase classname="test_scenario" name="test_communication_bidirectionnelle_entre_2_pa" time="0.004"><failure message="AssertionError">fixturefunc = &lt;function check_invoice_routed_via_peppol at 0x7b40269ec680&gt;, request = &lt;FixtureRequest for &lt;Function test_communication_bidirectionnelle_entre_2_pa&gt;&gt;
+src/pac_bdd/peppol.py:827: TypeError</failure></testcase><testcase classname="test_scenario" name="test_timeout_lors_du_lookup_sml" time="0.003" /><testcase classname="test_scenario" name="test_smp_temporairement_indisponible" time="0.003" /><testcase classname="test_scenario" name="test_retry_automatique_après_échec_temporaire" time="0.003" /><testcase classname="test_scenario" name="test_échec_définitif_après_plusieurs_retries" time="0.003" /><testcase classname="test_scenario" name="test_communication_bidirectionnelle_entre_2_pa" time="0.004"><failure message="AssertionError">fixturefunc = &lt;function check_invoice_routed_via_peppol at 0x7fe79fab76a0&gt;, request = &lt;FixtureRequest for &lt;Function test_communication_bidirectionnelle_entre_2_pa&gt;&gt;
 kwargs = {'invoice_id': 'f1', 'pa_id': 'pa2', 'peppol_context': {'dns_error': None, 'dns_responses': {}, 'enterprises': {'e1': ... '0009', 'siren': '222222222', ...}}, 'environment': &lt;PeppolEnvironment.TEST: 'acc.edelivery.tech.ec.europa.eu'&gt;, ...}}
 
     def call_fixture_func(
@@ -880,7 +880,7 @@ kwargs = {'invoice_id': 'f1', 'pa_id': 'pa2', 'peppol_context': {'dns_error': No
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 peppol_context = {'dns_error': None, 'dns_responses': {}, 'enterprises': {'e1': {'endpoint': None, 'registered': False, 'scheme': '0009...: '0009', 'siren': '222222222', ...}}, 'environment': &lt;PeppolEnvironment.TEST: 'acc.edelivery.tech.ec.europa.eu'&gt;, ...}
@@ -895,7 +895,7 @@ invoice_id = 'f1', pa_id = 'pa2'
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       AssertionError
 
-src/pac_bdd/peppol.py:962: AssertionError</failure></testcase><testcase classname="test_scenario" name="test_réception_dune_facture_via_as4_depuis_une_pa_distante" time="0.003"><failure message="ValueError: &quot;InvoiceMessage&quot; object has no field &quot;received_via_as4&quot;">fixturefunc = &lt;function invoice_received_via_as4 at 0x7b40269ec860&gt;, request = &lt;FixtureRequest for &lt;Function test_réception_dune_facture_via_as4_depuis_une_pa_distante&gt;&gt;
+src/pac_bdd/peppol.py:962: AssertionError</failure></testcase><testcase classname="test_scenario" name="test_réception_dune_facture_via_as4_depuis_une_pa_distante" time="0.003"><failure message="ValueError: &quot;InvoiceMessage&quot; object has no field &quot;received_via_as4&quot;">fixturefunc = &lt;function invoice_received_via_as4 at 0x7fe79fab7880&gt;, request = &lt;FixtureRequest for &lt;Function test_réception_dune_facture_via_as4_depuis_une_pa_distante&gt;&gt;
 kwargs = {'invoice_id': 'f1', 'peppol_context': {'dns_error': None, 'dns_responses': {}, 'enterprises': {'e1': {'endpoint': Non... '0009', 'siren': '111111111', ...}}, 'environment': &lt;PeppolEnvironment.TEST: 'acc.edelivery.tech.ec.europa.eu'&gt;, ...}}
 
     def call_fixture_func(
@@ -915,7 +915,7 @@ kwargs = {'invoice_id': 'f1', 'peppol_context': {'dns_error': None, 'dns_respons
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/pac_bdd/peppol.py:979: in invoice_received_via_as4
     peppol_context["invoices"][invoice_id].received_via_as4 = True
@@ -974,7 +974,7 @@ name = 'received_via_as4', value = True
 &gt;               raise ValueError(f'"{cls.__name__}" object has no field "{name}"')
 E               ValueError: "InvoiceMessage" object has no field "received_via_as4"
 
-.venv/lib/python3.13/site-packages/pydantic/main.py:1079: ValueError</failure></testcase><testcase classname="test_scenario" name="test_facture_b2g_via_chorus_pro_peppol" time="0.004" /><testcase classname="test_scenario" name="test_rejet_dolibarr" time="0.001"><failure message="NotImplementedError">fixturefunc = &lt;function compliance_rule_set at 0x7b40269a0b80&gt;, request = &lt;FixtureRequest for &lt;Function test_rejet_dolibarr&gt;&gt;, kwargs = {}
+.venv/lib/python3.13/site-packages/pydantic/main.py:1079: ValueError</failure></testcase><testcase classname="test_scenario" name="test_facture_b2g_via_chorus_pro_peppol" time="0.004" /><testcase classname="test_scenario" name="test_rejet_dolibarr" time="0.001"><failure message="NotImplementedError">fixturefunc = &lt;function compliance_rule_set at 0x7fe79fa67ba0&gt;, request = &lt;FixtureRequest for &lt;Function test_rejet_dolibarr&gt;&gt;, kwargs = {}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -993,7 +993,7 @@ E               ValueError: "InvoiceMessage" object has no field "received_via_a
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     @when("je définis un contrôle de conformité métier fournisseur")
@@ -1001,7 +1001,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 &gt;       raise NotImplementedError()
 E       NotImplementedError
 
-src/pac_bdd/tobeimplemented.py:41: NotImplementedError</failure></testcase><testcase classname="test_scenario" name="test_facture_rejetée" time="0.001"><failure message="NotImplementedError">fixturefunc = &lt;function submit_invoice_simple at 0x7b40269a0220&gt;, request = &lt;FixtureRequest for &lt;Function test_facture_rejetée&gt;&gt;, kwargs = {}
+src/pac_bdd/tobeimplemented.py:41: NotImplementedError</failure></testcase><testcase classname="test_scenario" name="test_facture_rejetée" time="0.001"><failure message="NotImplementedError">fixturefunc = &lt;function submit_invoice_simple at 0x7fe79fa67240&gt;, request = &lt;FixtureRequest for &lt;Function test_facture_rejetée&gt;&gt;, kwargs = {}
 
     def call_fixture_func(
         fixturefunc: _FixtureFunc[FixtureValue], request: FixtureRequest, kwargs
@@ -1020,7 +1020,7 @@ src/pac_bdd/tobeimplemented.py:41: NotImplementedError</failure></testcase><test
 &gt;           fixture_result = fixturefunc(**kwargs)
                              ^^^^^^^^^^^^^^^^^^^^^
 
-.venv/lib/python3.13/site-packages/_pytest/fixtures.py:915: 
+.venv/lib/python3.13/site-packages/_pytest/fixtures.py:930: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     @when("je dépose une facture")
