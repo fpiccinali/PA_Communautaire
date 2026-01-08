@@ -385,7 +385,7 @@ class PaContext:
             pass
 
 
-class WorldContext:
+class MyWorldContext:
     def __init__(self, broker, subscriber, app_api_gateway, port):
         self.broker = broker
         self.subscriber = subscriber
@@ -429,7 +429,7 @@ async def my_world():
 
         # Find an available port
         port = find_available_port(start_port=8000)
-        my_world = WorldContext(broker, subscriber, app_api_gateway, port)
+        my_world = MyWorldContext(broker, subscriber, app_api_gateway, port)
 
         async with my_world.broker as br:
             await br.start()

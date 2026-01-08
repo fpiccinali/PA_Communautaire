@@ -214,7 +214,7 @@ class PaContext:
         }
 
 
-class WorldContext:
+class MyWorldContext:
     def __init__(
         self,
         pac_pool: int,
@@ -253,25 +253,25 @@ class WorldContext:
 
 @pytest.fixture
 async def my_world():
-    async with WorldContext(pac_pool=1) as my_world:
+    async with MyWorldContext(pac_pool=1) as my_world:
         yield my_world
 
 
 @pytest.fixture
 async def my_world2():
-    async with WorldContext(pac_pool=2) as my_world:
+    async with MyWorldContext(pac_pool=2) as my_world:
         yield my_world
 
 
 @pytest.fixture
 async def my_world3():
-    async with WorldContext(pac_pool=3) as my_world:
+    async with MyWorldContext(pac_pool=3) as my_world:
         yield my_world
 
 
 @pytest.fixture
 async def my_world4():
-    async with WorldContext(pac_pool=4) as my_world:
+    async with MyWorldContext(pac_pool=4) as my_world:
         yield my_world
 
 
