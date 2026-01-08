@@ -1,0 +1,103 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.13"
+# dependencies = []
+# ///
+"""
+Test runner script for PA Communautaire.
+
+Runs pytest in both packages/pac0/ and packages/pac-bdd/ and generates
+JUnit XML and HTML reports in the /report folder.
+
+Usage:
+    uv run test.py
+"""
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+def run_tests(package_name: str, package_path: Path, report_dir: Path) -> int:
+    """Run pytest for a package and generate reports.
+
+    Args:
+        package_name: Name of the package (for display)
+        package_path: Path to the package directory
+        report_dir: Path to the report output directory
+
+    Returns:
+        pytest exit code
+    """
+    report_dir.mkdir(parents=True, exist_ok=True)
+
+    xml_report = report_dir / "report.xml"
+    html_report = report_dir / "report.html"
+
+    print(f"\n{'=' * 60}")
+    print(f"Running tests for: {package_name}")
+    print(f"Package path: {package_path}")
+    print(f"Reports: {report_dir}")
+    print(f"{'=' * 60}\n")
+
+    cmd = [
+        "uv",
+        "run",
+        "pytest",
+        f"--junitxml={xml_report}",
+        f"--html={html_report}",
+        "--self-contained-html",
+        "-v",
+    ]
+
+    result = subprocess.run(cmd, cwd=package_path)
+    return result.returncode
+
+
+def main() -> int:
+    """Main entry point."""
+    root_dir = Path(__file__).parent.parent.resolve()
+    report_base = root_dir / "report"
+
+    packages = [
+        ("pac0", root_dir / "packages" / "pac0"),
+        ("pac-bdd", root_dir / "packages" / "pac-bdd"),
+    ]
+
+    # Track exit codes
+    exit_codes = []
+
+    for pkg_name, pkg_path in packages:
+        if not pkg_path.exists():
+            print(f"Warning: Package path does not exist: {pkg_path}")
+            exit_codes.append(1)
+            continue
+
+        report_dir = report_base / pkg_name
+        exit_code = run_tests(pkg_name, pkg_path, report_dir)
+        exit_codes.append(exit_code)
+
+    # Summary
+    print(f"\n{'=' * 60}")
+    print("Test Summary")
+    print(f"{'=' * 60}")
+
+    all_passed = True
+    for (pkg_name, _), code in zip(packages, exit_codes):
+        status = "PASSED" if code == 0 else f"FAILED (exit code: {code})"
+        print(f"  {pkg_name}: {status}")
+        if code != 0:
+            all_passed = False
+
+    print(f"\nReports generated in: {report_base}")
+    print(f"  - {report_base}/pac0/report.html")
+    print(f"  - {report_base}/pac0/report.xml")
+    print(f"  - {report_base}/pac-bdd/report.html")
+    print(f"  - {report_base}/pac-bdd/report.xml")
+
+    # Return non-zero if any tests failed
+    return 0 if all_passed else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

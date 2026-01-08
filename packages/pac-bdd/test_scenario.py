@@ -12,4 +12,5 @@ import glob
 # loop over all *.feature files
 for feature_file in glob.glob("../../**/*.feature", recursive=True):
     # scenarios("../../docs/briques/04-validation-metier/compliance.feature")
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", feature_file)
     scenarios(feature_file)
