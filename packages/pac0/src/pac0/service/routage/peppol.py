@@ -13,20 +13,7 @@ from urllib.parse import quote
 
 import httpx
 
-
-class PeppolEnvironment(Enum):
-    """Environnements PEPPOL disponibles."""
-
-    PRODUCTION = "edelivery.tech.ec.europa.eu"
-    TEST = "acc.edelivery.tech.ec.europa.eu"
-
-
-class PeppolScheme(Enum):
-    """Schemes d'identification PEPPOL pour la France."""
-
-    SIREN = "0009"  # 9 chiffres
-    SIRET = "0002"  # 14 chiffres
-    TVA_FR = "9957"  # FR + 11 caractères
+from pac0.shared.peppol import PeppolScheme, PeppolEnvironment, compute_sml_hostname
 
 
 @dataclass
@@ -99,40 +86,6 @@ class PeppolLookupService:
         self.timeout = timeout
         self._dns_resolver = dns_resolver
         self._mock_smp_responses: dict = {}
-
-    def _compute_participant_hash(self, scheme_id: str, participant_id: str) -> str:
-        """
-        Calcule le hash MD5 de l'identifiant participant PEPPOL.
-
-        Args:
-            scheme_id: Scheme ID (ex: "0009" pour SIREN)
-            participant_id: Identifiant (ex: "123456789")
-
-        Returns:
-            Hash MD5 en hexadécimal
-        """
-        full_id = f"{scheme_id}::{participant_id}".lower()
-        return hashlib.md5(full_id.encode("utf-8")).hexdigest()
-
-    def compute_sml_hostname(self, scheme_id: str, participant_id: str) -> str:
-        """
-        Génère le hostname SML pour un participant PEPPOL.
-
-        Algorithme:
-        1. Construire l'identifiant: "{scheme_id}::{participant_id}"
-        2. Convertir en minuscules
-        3. Calculer le hash MD5
-        4. Construire: "B-{hash}.iso6523-actorid-upis.{sml_zone}"
-
-        Args:
-            scheme_id: Scheme ID (ex: "0009")
-            participant_id: Identifiant (ex: "123456789")
-
-        Returns:
-            Hostname SML complet
-        """
-        hash_value = self._compute_participant_hash(scheme_id, participant_id)
-        return f"B-{hash_value}.iso6523-actorid-upis.{self.sml_zone}"
 
     def _resolve_smp_url_sync(self, hostname: str) -> Optional[str]:
         """
@@ -238,7 +191,7 @@ class PeppolLookupService:
                 error_messages = {
                     "SMP_UNAVAILABLE": "SMP temporairement indisponible",
                     "SMP_TIMEOUT": "Timeout lors de la requête SMP",
-                    "PARTICIPANT_NOT_FOUND": f"Participant non trouvé dans le SML",
+                    "PARTICIPANT_NOT_FOUND": "Participant non trouvé dans le SML",
                 }
                 return PeppolLookupResult(
                     success=False,
@@ -263,7 +216,7 @@ class PeppolLookupService:
                 )
 
         # Étape 1: Générer le hostname SML
-        hostname = self.compute_sml_hostname(scheme_id, participant_id)
+        hostname = compute_sml_hostname(scheme_id, participant_id)
 
         # Étape 2: Résoudre l'URL du SMP via DNS
         smp_url = self._resolve_smp_url_sync(hostname)

@@ -2,7 +2,7 @@ import asyncio
 import functools
 
 import httpx
-from pac0.shared.test.fixture import WorldContext, world1pac
+from pac0.shared.test.world import WorldContext
 from pytest_bdd import given, parsers, scenario, then, when
 
 

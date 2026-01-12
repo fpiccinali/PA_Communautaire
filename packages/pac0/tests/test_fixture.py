@@ -25,15 +25,12 @@ async def test_world4pac(
     world,
 ) -> None:
     """
-    world4pac fixture
+    world with pas fixture
     """
     await world.pa_new(4)
-    # async with world.pas[0].api_gateway.get_client_async() as client:
-
     for pa in world.pas:
         print(f"testing pac {pa} ...")
 
-        # async with pa.HttpxAsyncClient() as client:
         async with pa.api_gateway.get_client_async() as client:
             print(f"testing pac {pa} ...")
             # print(pa.info())

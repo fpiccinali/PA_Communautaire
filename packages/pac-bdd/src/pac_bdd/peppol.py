@@ -7,9 +7,17 @@ de découverte PEPPOL et le routage inter-PA.
 
 import asyncio
 import functools
-from typing import Optional
+import hashlib
+from typing import Any, Optional
 
+from pydantic import BaseModel
 import pytest
+import yaml
+from pac0.shared.peppol import (
+    compute_participant_hash,
+    compute_sml_hostname,
+    PeppolScheme,
+)
 from pytest_bdd import given, parsers, then, when
 
 from pac0.service.routage import (
@@ -40,9 +48,28 @@ def async_to_sync(fn):
 # =============================================================================
 
 
+class PeppolContext(BaseModel):
+    sml_zone: str = "acc.edelivery.tech.ec.europa.eu"
+    enterprise_id: str | None = None
+    siren: str | None = None
+    siret: str | None = None
+    result: Any | None = None  # PeppolLookupResult
+
+
+#    peppol_context["enterprises"][enterprise_id] = {
+#        "siren": siren,
+#        "siret": None,
+#        "registered": False,
+#        "scheme": "0009",
+#        "smp_url": None,
+#        "endpoint": None,
+#    }
+
+
 @pytest.fixture
 def peppol_context():
     """Contexte pour les tests PEPPOL."""
+    """
     return {
         "environment": PeppolEnvironment.TEST,
         "sml_zone": "acc.edelivery.tech.ec.europa.eu",
@@ -56,6 +83,8 @@ def peppol_context():
         "smp_hostname": None,
         "dns_error": None,
     }
+    """
+    return PeppolContext()
 
 
 @pytest.fixture
@@ -73,6 +102,75 @@ def peppol_service(peppol_context) -> PeppolLookupService:
     peppol_context["peppol_service"] = service
     set_peppol_service(service)
     return service
+
+
+# =============================================================================
+
+
+@when(parsers.parse('''je calcule l'empreinte md5 de "{msg}"'''))
+def compute_md5(peppol_context: PeppolContext, msg: str):
+    peppol_context.result = hashlib.md5(msg.encode("utf-8")).hexdigest()
+
+
+@then(parsers.parse('''j'obtiens "{result}"'''))
+def check_result(
+    peppol_context: PeppolContext,
+    result: str,
+):
+    """étape générique pour tester tout résultat"""
+    if peppol_context.result != result:
+        print(f"result: {peppol_context.result}")
+        print(f"expecting: {result}")
+    assert peppol_context.result == result
+
+
+@then(parsers.parse('''l'identification par {facon} porte le code "{code}"'''))
+def check_peppol_scheme(
+    facon: str,
+    code: str,
+):
+    print("xxxx", getattr(PeppolScheme, facon).value, code)
+    assert getattr(PeppolScheme, facon).value == code
+
+
+@when(parsers.parse('''je calcule l'empreinte {facon} "{id}"'''))
+def check_hash_schem(
+    peppol_context: PeppolContext,
+    facon: str,
+    id: str,
+):
+    peppol_context.result = compute_participant_hash(facon, id)
+
+
+@given(parsers.parse('''la racine SML "{zone}"'''))
+def root_sml(
+    peppol_context: PeppolContext,
+    zone: str,
+):
+    peppol_context.sml_zone = zone
+
+
+@when(parsers.parse('''je calcule l'hôte SML pour {facon} "{id}"'''))
+def build_sml_host(
+    peppol_context: PeppolContext,
+    facon: str,
+    id: str,
+):
+    peppol_context.result = compute_sml_hostname(
+        sml_zone=peppol_context.sml_zone,
+        scheme_id=facon,
+        participant_id=id,
+    )
+
+
+# compute_sml_hostname
+# =============================================================================
+
+
+@given(parsers.parse("le service PEPPOL simulé avec:"))
+def peppol_content(world, docstring):
+    """Configure le service PEPPOL simulé."""
+    peppol_data = yaml.safe_load(docstring)
 
 
 # =============================================================================
@@ -98,34 +196,27 @@ def sml_zone_configured(peppol_context, sml_zone: str):
 
 
 @given(parsers.parse('l\'entreprise #{enterprise_id} avec le SIREN "{siren}"'))
-def enterprise_with_siren(peppol_context, enterprise_id: str, siren: str):
+def enterprise_with_siren(
+    peppol_context: PeppolContext,
+    enterprise_id: str,
+    siren: str,
+):
     """Définit une entreprise avec son SIREN."""
-    peppol_context["enterprises"][enterprise_id] = {
-        "siren": siren,
-        "siret": None,
-        "registered": False,
-        "scheme": "0009",
-        "smp_url": None,
-        "endpoint": None,
-    }
+    peppol_context.enterprise_id = enterprise_id
+    peppol_context.siren = siren
 
 
 @given(parsers.parse('l\'entreprise #{enterprise_id} avec le SIRET "{siret}"'))
 def enterprise_with_siret(peppol_context, enterprise_id: str, siret: str):
     """Définit une entreprise avec son SIRET."""
-    peppol_context["enterprises"][enterprise_id] = {
-        "siren": siret[:9],
-        "siret": siret,
-        "registered": False,
-        "scheme": "0002",
-        "smp_url": None,
-        "endpoint": None,
-    }
+    peppol_context.enterprise_id = enterprise_id
+    peppol_context.siret = siret
 
 
 @given(parsers.parse("l'entreprise #{enterprise_id} enregistrée sur PEPPOL"))
 def enterprise_registered_peppol(peppol_context, peppol_service, enterprise_id: str):
     """Marque une entreprise comme enregistrée sur PEPPOL."""
+    # word.peppol.register_company(enterprise_id)
     enterprise = peppol_context["enterprises"].get(enterprise_id)
     if enterprise:
         enterprise["registered"] = True
@@ -284,20 +375,6 @@ def invoice_defined(peppol_context, invoice_id: str, sender_id: str, recipient_i
 # =============================================================================
 
 
-@when(parsers.parse('je calcule le hostname SML pour le SIREN "{siren}"'))
-def compute_sml_hostname_siren(peppol_context, peppol_service, siren: str):
-    """Calcule le hostname SML pour un SIREN."""
-    hostname = peppol_service.compute_sml_hostname("0009", siren)
-    peppol_context["smp_hostname"] = hostname
-
-
-@when(parsers.parse('je calcule le hostname SML pour le SIRET "{siret}"'))
-def compute_sml_hostname_siret(peppol_context, peppol_service, siret: str):
-    """Calcule le hostname SML pour un SIRET."""
-    hostname = peppol_service.compute_sml_hostname("0002", siret)
-    peppol_context["smp_hostname"] = hostname
-
-
 @when("j'interroge le SML via DNS")
 def query_sml_dns(peppol_context, peppol_service):
     """Interroge le SML via DNS."""
@@ -385,6 +462,7 @@ def when_routing_consults_peppol(peppol_context, enterprise_id: str):
 def check_sml_hostname_format(peppol_context, sml_zone: str):
     """Vérifie le format du hostname SML."""
     hostname = peppol_context.get("smp_hostname")
+    word.peppol.query(hostname)
     assert hostname is not None
     assert hostname.startswith("B-")
     assert f".iso6523-actorid-upis.{sml_zone}" in hostname
