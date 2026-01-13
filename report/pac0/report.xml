@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="5" failures="16" skipped="4" tests="86" time="31.986" timestamp="2026-01-12T19:54:51.598366+01:00" hostname="gpd"><testcase classname="tests.test_asyncio" name="test_0010" time="3.007" /><testcase classname="tests.test_asyncio" name="test_0020" time="2.005" /><testcase classname="tests.test_asyncio" name="test_0030" time="1.004" /><testcase classname="tests.test_fastapi" name="test_00100" time="0.393" /><testcase classname="tests.test_fastapi" name="test_00110" time="0.351" /><testcase classname="tests.test_fastapi" name="test_00120" time="0.350" /><testcase classname="tests.test_fastapi" name="test_00130" time="0.347" /><testcase classname="tests.test_fastapi" name="test_api_world_fixture" time="3.366" /><testcase classname="tests.test_fastapi" name="test_api_world4_fixture" time="4.449" /><testcase classname="tests.test_faststream" name="test_validation_str_ok" time="0.024" /><testcase classname="tests.test_faststream" name="test_validation_str_err" time="0.010" /><testcase classname="tests.test_faststream" name="test_connect_only" time="0.004" /><testcase classname="tests.test_faststream" name="test_sub_embed" time="0.005" /><testcase classname="tests.test_faststream" name="test_sub_embed_fixture" time="0.006" /><testcase classname="tests.test_faststream" name="test_pubsub_nats" time="0.013" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture" time="0.012" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture_class" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:280: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_pubsub_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:470: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_api_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:513: fail when running all tests</skipped></testcase><testcase classname="tests.test_fixture" name="test_world1pac" time="1.617" /><testcase classname="tests.test_fixture" name="test_world4pac" time="3.219" /><testcase classname="tests.test_nats" name="test_nats" time="0.015" /><testcase classname="tests.test_nats" name="test_nats_context_manager" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_01_nats_server_manual_lifecycle" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02_nats_server_context_manager" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02b_nats_server_context_wrapper" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03_broker_connection" time="0.012" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03b_broker_context_wrapper" time="0.011" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04_broker_pubsub_basic" time="0.028" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04b_broker_pubsub_wildcard" time="0.013" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05_single_service_with_readiness" time="0.517" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05b_service_readiness_timeout" time="0.116" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06_multiple_services_pool" time="0.019" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06b_real_services_pool" time="0.042" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07_fastapi_with_services" time="0.318" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07b_healthcheck_with_services" time="0.318" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08_full_pa_context" time="0.377" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08b_pa_context_isolation" time="0.631" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09_multi_pa_pool_2pa" time="0.001"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 364&#10;      async def test_09_multi_pa_pool_2pa(self, world_service_2pa):&#10;          &quot;&quot;&quot;&#10;          Level 9: World with 2 PA instances.&#10;          &quot;&quot;&quot;&#10;          assert len(world_service_2pa.pacs) == 2&#10;          assert world_service_2pa.pac1 is not None&#10;          assert world_service_2pa.pac2 is not None&#10;&#10;          # Verify isolation&#10;          assert world_service_2pa.pac1.nats.port != world_service_2pa.pac2.nats.port&#10;&#10;          # Verify both are functional&#10;          for pac in world_service_2pa.pacs:&#10;              async with pac.http_client() as client:&#10;                  response = await client.get(&quot;/healthcheck&quot;)&#10;                  assert response.status_code == 200&#10;E       fixture 'world_service_2pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:364&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 364
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="5" failures="20" skipped="4" tests="86" time="243.779" timestamp="2026-01-13T17:49:02.462199+01:00" hostname="gpd"><testcase classname="tests.test_asyncio" name="test_0010" time="3.005" /><testcase classname="tests.test_asyncio" name="test_0020" time="2.005" /><testcase classname="tests.test_asyncio" name="test_0030" time="1.004" /><testcase classname="tests.test_fastapi" name="test_00100" time="0.391" /><testcase classname="tests.test_fastapi" name="test_00110" time="0.347" /><testcase classname="tests.test_fastapi" name="test_00120" time="0.348" /><testcase classname="tests.test_fastapi" name="test_00130" time="0.347" /><testcase classname="tests.test_fastapi" name="test_api_world_fixture" time="3.365" /><testcase classname="tests.test_fastapi" name="test_api_world4_fixture" time="4.323" /><testcase classname="tests.test_faststream" name="test_validation_str_ok" time="0.026" /><testcase classname="tests.test_faststream" name="test_validation_str_err" time="0.082" /><testcase classname="tests.test_faststream" name="test_connect_only" time="0.006" /><testcase classname="tests.test_faststream" name="test_sub_embed" time="0.005" /><testcase classname="tests.test_faststream" name="test_sub_embed_fixture" time="0.006" /><testcase classname="tests.test_faststream" name="test_pubsub_nats" time="0.013" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture" time="0.013" /><testcase classname="tests.test_faststream" name="test_pubsub_nats_fixture_class" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:284: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_pubsub_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:474: fail when running all tests</skipped></testcase><testcase classname="tests.test_faststream" name="test_api_world_fixture" time="0.000"><skipped type="pytest.skip" message="fail when running all tests">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_faststream.py:517: fail when running all tests</skipped></testcase><testcase classname="tests.test_fixture" name="test_world1pac" time="40.202"><failure message="TimeoutError: Service api_gateway failed to start within 30.0s">world = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x758362379e80&gt;, pas=[])
+
+    async def test_world1pac(
+        world,
+    ) -&gt; None:
+        """
+        world1pac fixture
+        """
+&gt;       await world.pa_new()
+
+tests/test_fixture.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src/pac0/shared/test/world.py:71: in pa_new
+    await asyncio.gather(*tasks)
+src/pac0/shared/test/service/pac.py:58: in __aenter__
+    await asyncio.gather(*[s.__aenter__() for s in self._services()])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;pac0.shared.test.service.fastapi.FastApiServiceContext object at 0x7583622901a0&gt;
+
+    async def __aenter__(self) -&gt; Self:
+        """Start the service subprocess."""
+        if self.config.port == 0:
+            self.config.port = find_available_port(start_port=8000)
+        logger.info(
+            f"Starting service {self.config.name} on port {self.config.port} : {' '.join(self.config.command)}"
+        )
+        env = os.environ.copy()
+        env["PORT"] = str(self.config.port)
+        if self.config.env_var_extra:
+            env.update(self.config.env_var_extra)
+        command = [c.format(**env) for c in self.config.command]
+    
+        self._process = subprocess.Popen(
+            command,
+            # stdout=subprocess.PIPE,  # self.config.stdout,
+            # stderr=subprocess.PIPE,  # self.config.stderr,
+            text=True,
+            env=env,
+            cwd=PACKAGE_BASE_FOLDER,
+        )
+    
+        # Wait for service to be ready
+        self.is_ready = await self.wait_for_ready(self.config.startup_timeout)
+        if not self.is_ready:
+            await self._terminate()
+&gt;           raise TimeoutError(
+                f"Service {self.config.name} failed to start within {self.config.startup_timeout}s"
+            )
+E           TimeoutError: Service api_gateway failed to start within 30.0s
+
+src/pac0/shared/test/service/base.py:157: TimeoutError</failure></testcase><testcase classname="tests.test_fixture" name="test_world4pac" time="70.502"><failure message="TimeoutError: Service api_gateway failed to start within 30.0s">world = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x7583622defd0&gt;, pas=[])
+
+    @pytest.mark.asyncio
+    async def test_world4pac(
+        world,
+    ) -&gt; None:
+        """
+        world with pas fixture
+        """
+&gt;       await world.pa_new(4)
+
+tests/test_fixture.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src/pac0/shared/test/world.py:71: in pa_new
+    await asyncio.gather(*tasks)
+src/pac0/shared/test/service/pac.py:58: in __aenter__
+    await asyncio.gather(*[s.__aenter__() for s in self._services()])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;pac0.shared.test.service.fastapi.FastApiServiceContext object at 0x7583622dc410&gt;
+
+    async def __aenter__(self) -&gt; Self:
+        """Start the service subprocess."""
+        if self.config.port == 0:
+            self.config.port = find_available_port(start_port=8000)
+        logger.info(
+            f"Starting service {self.config.name} on port {self.config.port} : {' '.join(self.config.command)}"
+        )
+        env = os.environ.copy()
+        env["PORT"] = str(self.config.port)
+        if self.config.env_var_extra:
+            env.update(self.config.env_var_extra)
+        command = [c.format(**env) for c in self.config.command]
+    
+        self._process = subprocess.Popen(
+            command,
+            # stdout=subprocess.PIPE,  # self.config.stdout,
+            # stderr=subprocess.PIPE,  # self.config.stderr,
+            text=True,
+            env=env,
+            cwd=PACKAGE_BASE_FOLDER,
+        )
+    
+        # Wait for service to be ready
+        self.is_ready = await self.wait_for_ready(self.config.startup_timeout)
+        if not self.is_ready:
+            await self._terminate()
+&gt;           raise TimeoutError(
+                f"Service {self.config.name} failed to start within {self.config.startup_timeout}s"
+            )
+E           TimeoutError: Service api_gateway failed to start within 30.0s
+
+src/pac0/shared/test/service/base.py:157: TimeoutError</failure></testcase><testcase classname="tests.test_nats" name="test_nats" time="0.010" /><testcase classname="tests.test_nats" name="test_nats_context_manager" time="0.010" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_01_nats_server_manual_lifecycle" time="0.010" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02_nats_server_context_manager" time="0.009" /><testcase classname="tests.test_service_lifecycle.TestNatsServerLifecycle" name="test_02b_nats_server_context_wrapper" time="0.010" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03_broker_connection" time="0.012" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_03b_broker_context_wrapper" time="0.012" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04_broker_pubsub_basic" time="0.014" /><testcase classname="tests.test_service_lifecycle.TestBrokerConnection" name="test_04b_broker_pubsub_wildcard" time="0.013" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05_single_service_with_readiness" time="0.519" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_05b_service_readiness_timeout" time="0.115" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06_multiple_services_pool" time="0.018" /><testcase classname="tests.test_service_lifecycle.TestFastStreamServices" name="test_06b_real_services_pool" time="0.036" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07_fastapi_with_services" time="0.380" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_07b_healthcheck_with_services" time="0.321" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08_full_pa_context" time="0.320" /><testcase classname="tests.test_service_lifecycle.TestFullIntegration" name="test_08b_pa_context_isolation" time="0.630" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09_multi_pa_pool_2pa" time="0.001"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 368&#10;      async def test_09_multi_pa_pool_2pa(self, world_service_2pa):&#10;          &quot;&quot;&quot;&#10;          Level 9: World with 2 PA instances.&#10;          &quot;&quot;&quot;&#10;          assert len(world_service_2pa.pacs) == 2&#10;          assert world_service_2pa.pac1 is not None&#10;          assert world_service_2pa.pac2 is not None&#10;&#10;          # Verify isolation&#10;          assert world_service_2pa.pac1.nats.port != world_service_2pa.pac2.nats.port&#10;&#10;          # Verify both are functional&#10;          for pac in world_service_2pa.pacs:&#10;              async with pac.http_client() as client:&#10;                  response = await client.get(&quot;/healthcheck&quot;)&#10;                  assert response.status_code == 200&#10;E       fixture 'world_service_2pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:368&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 368
       async def test_09_multi_pa_pool_2pa(self, world_service_2pa):
           """
           Level 9: World with 2 PA instances.
@@ -19,7 +122,7 @@ E       fixture 'world_service_2pa' not found
 &gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world
 &gt;       use 'pytest --fixtures [testpath]' for help on them.
 
-/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:364</error></testcase><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09b_multi_pa_pool_4pa" time="0.398" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_10_cross_pa_info" time="0.001"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 394&#10;      async def test_10_cross_pa_info(self, world_service_2pa):&#10;          &quot;&quot;&quot;&#10;          Level 10: Verify PA instances have independent info.&#10;&#10;          Note: Cross-PA message routing would require additional&#10;          infrastructure (central directory, federation) not yet implemented.&#10;          &quot;&quot;&quot;&#10;          info1 = world_service_2pa.pac1.info()&#10;          info2 = world_service_2pa.pac2.info()&#10;&#10;          # Print for debugging&#10;          print(f&quot;PA1: {info1}&quot;)&#10;          print(f&quot;PA2: {info2}&quot;)&#10;&#10;          # Verify independence&#10;          assert info1[&quot;nats_port&quot;] != info2[&quot;nats_port&quot;]&#10;          assert info1[&quot;api_port&quot;] != info2[&quot;api_port&quot;]&#10;          assert info1[&quot;nats_url&quot;] != info2[&quot;nats_url&quot;]&#10;E       fixture 'world_service_2pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:394&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 394
+/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:368</error></testcase><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_09b_multi_pa_pool_4pa" time="0.390" /><testcase classname="tests.test_service_lifecycle.TestMultiPaPool" name="test_10_cross_pa_info" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 398&#10;      async def test_10_cross_pa_info(self, world_service_2pa):&#10;          &quot;&quot;&quot;&#10;          Level 10: Verify PA instances have independent info.&#10;&#10;          Note: Cross-PA message routing would require additional&#10;          infrastructure (central directory, federation) not yet implemented.&#10;          &quot;&quot;&quot;&#10;          info1 = world_service_2pa.pac1.info()&#10;          info2 = world_service_2pa.pac2.info()&#10;&#10;          # Print for debugging&#10;          print(f&quot;PA1: {info1}&quot;)&#10;          print(f&quot;PA2: {info2}&quot;)&#10;&#10;          # Verify independence&#10;          assert info1[&quot;nats_port&quot;] != info2[&quot;nats_port&quot;]&#10;          assert info1[&quot;api_port&quot;] != info2[&quot;api_port&quot;]&#10;          assert info1[&quot;nats_url&quot;] != info2[&quot;nats_url&quot;]&#10;E       fixture 'world_service_2pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:398&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py, line 398
       async def test_10_cross_pa_info(self, world_service_2pa):
           """
           Level 10: Verify PA instances have independent info.
@@ -42,7 +145,100 @@ E       fixture 'world_service_2pa' not found
 &gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world
 &gt;       use 'pytest --fixtures [testpath]' for help on them.
 
-/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:394</error></testcase><testcase classname="tests.test_test" name="test_dummy_async" time="0.001" /><testcase classname="tests.test_test" name="test_dummy" time="0.000" /><testcase classname="tests.test_world" name="test_world_default_0pa" time="0.004" /><testcase classname="tests.test_world" name="test_world_with_1pa" time="3.007" /><testcase classname="tests.test_world" name="test_world_with_4pa" time="2.799" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_nats_service_is_protocol" time="0.002" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_peppol_service_is_protocol" time="0.001" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_pa_service_is_protocol" time="0.001" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_protocol_properties_exist" time="0.001" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_embedded_nats_default" time="0.012" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_remote_nats_endpoint" time="0.010" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_nats_service_properties" time="0.009" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_nats_wait_ready_timeout" time="0.001"><skipped type="pytest.skip" message="Timeout test skipped for CI performance">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:114: Timeout test skipped for CI performance</skipped></testcase><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_mock_default" time="0.001" /><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_mock_responses" time="0.001" /><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_mock_not_found" time="0.001"><failure message="TypeError: compute_sml_hostname() missing 1 required positional argument: 'participant_id'">self = &lt;test_world_old.TestPeppolServiceLifecycle object at 0x79c46cace060&gt;
+/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_service_lifecycle.py:398</error></testcase><testcase classname="tests.test_test" name="test_dummy_async" time="0.001" /><testcase classname="tests.test_test" name="test_dummy" time="0.001" /><testcase classname="tests.test_world" name="test_world_default_0pa" time="0.004" /><testcase classname="tests.test_world" name="test_world_with_1pa" time="41.042"><failure message="TimeoutError: Service api_gateway failed to start within 30.0s">async def test_world_with_1pa():
+        """WorldContext with 1 PA instance."""
+        async with WorldContext() as world:
+&gt;           await world.pa_new() # default is 1
+            ^^^^^^^^^^^^^^^^^^^^
+
+tests/test_world.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src/pac0/shared/test/world.py:71: in pa_new
+    await asyncio.gather(*tasks)
+src/pac0/shared/test/service/pac.py:58: in __aenter__
+    await asyncio.gather(*[s.__aenter__() for s in self._services()])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;pac0.shared.test.service.fastapi.FastApiServiceContext object at 0x7583622cdfd0&gt;
+
+    async def __aenter__(self) -&gt; Self:
+        """Start the service subprocess."""
+        if self.config.port == 0:
+            self.config.port = find_available_port(start_port=8000)
+        logger.info(
+            f"Starting service {self.config.name} on port {self.config.port} : {' '.join(self.config.command)}"
+        )
+        env = os.environ.copy()
+        env["PORT"] = str(self.config.port)
+        if self.config.env_var_extra:
+            env.update(self.config.env_var_extra)
+        command = [c.format(**env) for c in self.config.command]
+    
+        self._process = subprocess.Popen(
+            command,
+            # stdout=subprocess.PIPE,  # self.config.stdout,
+            # stderr=subprocess.PIPE,  # self.config.stderr,
+            text=True,
+            env=env,
+            cwd=PACKAGE_BASE_FOLDER,
+        )
+    
+        # Wait for service to be ready
+        self.is_ready = await self.wait_for_ready(self.config.startup_timeout)
+        if not self.is_ready:
+            await self._terminate()
+&gt;           raise TimeoutError(
+                f"Service {self.config.name} failed to start within {self.config.startup_timeout}s"
+            )
+E           TimeoutError: Service api_gateway failed to start within 30.0s
+
+src/pac0/shared/test/service/base.py:157: TimeoutError</failure></testcase><testcase classname="tests.test_world" name="test_world_with_4pa" time="70.269"><failure message="TimeoutError: Service api_gateway failed to start within 30.0s">async def test_world_with_4pa():
+        """WorldContext with 4 PA instances."""
+        async with WorldContext() as world:
+&gt;           await world.pa_new(4)
+
+tests/test_world.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src/pac0/shared/test/world.py:71: in pa_new
+    await asyncio.gather(*tasks)
+src/pac0/shared/test/service/pac.py:58: in __aenter__
+    await asyncio.gather(*[s.__aenter__() for s in self._services()])
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;pac0.shared.test.service.fastapi.FastApiServiceContext object at 0x758353ed7ac0&gt;
+
+    async def __aenter__(self) -&gt; Self:
+        """Start the service subprocess."""
+        if self.config.port == 0:
+            self.config.port = find_available_port(start_port=8000)
+        logger.info(
+            f"Starting service {self.config.name} on port {self.config.port} : {' '.join(self.config.command)}"
+        )
+        env = os.environ.copy()
+        env["PORT"] = str(self.config.port)
+        if self.config.env_var_extra:
+            env.update(self.config.env_var_extra)
+        command = [c.format(**env) for c in self.config.command]
+    
+        self._process = subprocess.Popen(
+            command,
+            # stdout=subprocess.PIPE,  # self.config.stdout,
+            # stderr=subprocess.PIPE,  # self.config.stderr,
+            text=True,
+            env=env,
+            cwd=PACKAGE_BASE_FOLDER,
+        )
+    
+        # Wait for service to be ready
+        self.is_ready = await self.wait_for_ready(self.config.startup_timeout)
+        if not self.is_ready:
+            await self._terminate()
+&gt;           raise TimeoutError(
+                f"Service {self.config.name} failed to start within {self.config.startup_timeout}s"
+            )
+E           TimeoutError: Service api_gateway failed to start within 30.0s
+
+src/pac0/shared/test/service/base.py:157: TimeoutError</failure></testcase><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_nats_service_is_protocol" time="0.000" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_peppol_service_is_protocol" time="0.000" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_pa_service_is_protocol" time="0.000" /><testcase classname="tests.test_world_old.TestServiceProtocol" name="test_protocol_properties_exist" time="0.000" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_embedded_nats_default" time="0.010" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_remote_nats_endpoint" time="0.010" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_nats_service_properties" time="0.009" /><testcase classname="tests.test_world_old.TestNatsServiceLifecycle" name="test_nats_wait_ready_timeout" time="0.001"><skipped type="pytest.skip" message="Timeout test skipped for CI performance">/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:118: Timeout test skipped for CI performance</skipped></testcase><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_mock_default" time="0.001" /><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_mock_responses" time="0.001" /><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_mock_not_found" time="0.001"><failure message="TypeError: compute_sml_hostname() missing 1 required positional argument: 'participant_id'">self = &lt;test_world_old.TestPeppolServiceLifecycle object at 0x7583625aab10&gt;
 
     async def test_peppol_mock_not_found(self):
         """PeppolService returns not found for unknown participants."""
@@ -50,17 +246,17 @@ E       fixture 'world_service_2pa' not found
 &gt;           result = await svc.lookup_by_siren("999999999")
                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/test_world_old.py:159: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-src/pac0/shared/test/services.py:281: in lookup_by_siren
+tests/test_world_old.py:163: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src/pac0/shared/test/services.py:285: in lookup_by_siren
     return await self._lookup_service.lookup_by_siren(siren, document_type)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-src/pac0/service/routage/peppol.py:397: in lookup_by_siren
+src/pac0/service/routage/peppol.py:401: in lookup_by_siren
     return await self.lookup(PeppolScheme.SIREN.value, siren, document_type)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;pac0.service.routage.peppol.PeppolLookupService object at 0x79c46a317890&gt;, scheme_id = '0009', participant_id = '999999999', document_type = 'invoice_ubl'
+self = &lt;pac0.service.routage.peppol.PeppolLookupService object at 0x7583622ded50&gt;, scheme_id = '0009', participant_id = '999999999', document_type = 'invoice_ubl'
 
     async def lookup(
         self,
@@ -120,7 +316,7 @@ self = &lt;pac0.service.routage.peppol.PeppolLookupService object at 0x79c46a317
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: compute_sml_hostname() missing 1 required positional argument: 'participant_id'
 
-src/pac0/service/routage/peppol.py:219: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_clear_mock_responses" time="0.002"><failure message="TypeError: compute_sml_hostname() missing 1 required positional argument: 'participant_id'">self = &lt;test_world_old.TestPeppolServiceLifecycle object at 0x79c46cace190&gt;
+src/pac0/service/routage/peppol.py:223: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestPeppolServiceLifecycle" name="test_peppol_clear_mock_responses" time="0.002"><failure message="TypeError: compute_sml_hostname() missing 1 required positional argument: 'participant_id'">self = &lt;test_world_old.TestPeppolServiceLifecycle object at 0x7583625aac40&gt;
 
     async def test_peppol_clear_mock_responses(self):
         """PeppolService can clear mock responses."""
@@ -141,17 +337,17 @@ src/pac0/service/routage/peppol.py:219: TypeError</failure></testcase><testcase 
 &gt;           result = await svc.lookup_by_siren("123456789")
                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/test_world_old.py:179: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-src/pac0/shared/test/services.py:281: in lookup_by_siren
+tests/test_world_old.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src/pac0/shared/test/services.py:285: in lookup_by_siren
     return await self._lookup_service.lookup_by_siren(siren, document_type)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-src/pac0/service/routage/peppol.py:397: in lookup_by_siren
+src/pac0/service/routage/peppol.py:401: in lookup_by_siren
     return await self.lookup(PeppolScheme.SIREN.value, siren, document_type)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-self = &lt;pac0.service.routage.peppol.PeppolLookupService object at 0x79c46c7d76f0&gt;, scheme_id = '0009', participant_id = '123456789', document_type = 'invoice_ubl'
+self = &lt;pac0.service.routage.peppol.PeppolLookupService object at 0x758362225e00&gt;, scheme_id = '0009', participant_id = '123456789', document_type = 'invoice_ubl'
 
     async def lookup(
         self,
@@ -211,7 +407,7 @@ self = &lt;pac0.service.routage.peppol.PeppolLookupService object at 0x79c46c7d7
                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: compute_sml_hostname() missing 1 required positional argument: 'participant_id'
 
-src/pac0/service/routage/peppol.py:219: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_default" time="0.325" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_healthcheck" time="0.327" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_root_endpoint" time="0.325" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_info" time="0.324" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_shared_nats" time="0.326" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_external_nats_endpoint" time="0.327" /><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_default_1pa" time="0.006"><failure message="assert 0 == 1&#10; +  where 0 = len([])&#10; +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x79c46a374f30&gt;, pas=[]).pas">self = &lt;test_world_old.TestWorldContextBasic object at 0x79c46cae2850&gt;
+src/pac0/service/routage/peppol.py:223: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_default" time="0.327" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_healthcheck" time="0.380" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_root_endpoint" time="0.423" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_info" time="0.324" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_shared_nats" time="0.570" /><testcase classname="tests.test_world_old.TestPaServiceLifecycle" name="test_pa_service_external_nats_endpoint" time="0.327" /><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_default_1pa" time="0.006"><failure message="assert 0 == 1&#10; +  where 0 = len([])&#10; +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x7583621c32f0&gt;, pas=[]).pas">self = &lt;test_world_old.TestWorldContextBasic object at 0x7583625c25d0&gt;
 
     async def test_world_default_1pa(self):
         """Default WorldContext has 1 PA."""
@@ -219,9 +415,9 @@ src/pac0/service/routage/peppol.py:219: TypeError</failure></testcase><testcase 
 &gt;           assert len(world.pas) == 1
 E           assert 0 == 1
 E            +  where 0 = len([])
-E            +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x79c46a374f30&gt;, pas=[]).pas
+E            +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x7583621c32f0&gt;, pas=[]).pas
 
-tests/test_world_old.py:260: AssertionError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_with_2pa" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x79c46cae2990&gt;
+tests/test_world_old.py:264: AssertionError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_with_2pa" time="0.002"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x7583625c2710&gt;
 
     async def test_world_with_2pa(self):
         """WorldContext with 2 PA instances."""
@@ -229,7 +425,7 @@ tests/test_world_old.py:260: AssertionError</failure></testcase><testcase classn
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:266: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_services_running" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x79c46cace520&gt;
+tests/test_world_old.py:270: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_services_running" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x7583625aafd0&gt;
 
     async def test_world_services_running(self):
         """WorldContext has all services running."""
@@ -237,7 +433,7 @@ tests/test_world_old.py:266: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:274: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_shared_nats" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x79c46cace650&gt;
+tests/test_world_old.py:278: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_shared_nats" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x7583625ab100&gt;
 
     async def test_world_shared_nats(self):
         """All PAs share the same NATS service."""
@@ -245,7 +441,7 @@ tests/test_world_old.py:274: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:282: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_info" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x79c46c959130&gt;
+tests/test_world_old.py:286: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextBasic" name="test_world_info" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextBasic object at 0x758362439130&gt;
 
     async def test_world_info(self):
         """WorldContext provides info dict."""
@@ -253,7 +449,7 @@ tests/test_world_old.py:282: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:289: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_pa_isolation_ports" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x79c46cae2ad0&gt;
+tests/test_world_old.py:293: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_pa_isolation_ports" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x7583625c2850&gt;
 
     async def test_world_pa_isolation_ports(self):
         """Each PA has different ports."""
@@ -261,7 +457,7 @@ tests/test_world_old.py:289: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:309: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_each_pa_functional" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x79c46cae2c10&gt;
+tests/test_world_old.py:313: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_each_pa_functional" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x7583625c2990&gt;
 
     async def test_world_each_pa_functional(self):
         """Each PA responds to requests."""
@@ -269,7 +465,7 @@ tests/test_world_old.py:309: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:316: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_max_pa_count" time="0.002"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x79c46cace780&gt;
+tests/test_world_old.py:320: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_max_pa_count" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x7583625ab230&gt;
 
     async def test_world_max_pa_count(self):
         """WorldContext supports up to 10 PAs."""
@@ -277,7 +473,7 @@ tests/test_world_old.py:316: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:324: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_pa_count_validation" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x79c46cace8b0&gt;
+tests/test_world_old.py:328: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextMultiPA" name="test_world_pa_count_validation" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextMultiPA object at 0x7583625ab360&gt;
 
     async def test_world_pa_count_validation(self):
         """WorldContext validates pa_count bounds."""
@@ -285,7 +481,7 @@ tests/test_world_old.py:324: TypeError</failure></testcase><testcase classname="
 &gt;           WorldContext(pa_count=0)
 E           TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:331: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_custom_nats_service" time="0.013"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'nats_service'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x79c46cae2d50&gt;
+tests/test_world_old.py:335: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_custom_nats_service" time="0.010"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'nats_service'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x7583625c2ad0&gt;
 
     async def test_world_custom_nats_service(self):
         """WorldContext accepts pre-configured NATS service."""
@@ -295,7 +491,7 @@ tests/test_world_old.py:331: TypeError</failure></testcase><testcase classname="
                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E           TypeError: WorldContext.__init__() got an unexpected keyword argument 'nats_service'
 
-tests/test_world_old.py:349: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_custom_peppol_service" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'peppol_service'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x79c46cae2e90&gt;
+tests/test_world_old.py:353: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_custom_peppol_service" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'peppol_service'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x7583625c2c10&gt;
 
     async def test_world_custom_peppol_service(self):
         """WorldContext accepts pre-configured Peppol service."""
@@ -305,7 +501,7 @@ tests/test_world_old.py:349: TypeError</failure></testcase><testcase classname="
                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E           TypeError: WorldContext.__init__() got an unexpected keyword argument 'peppol_service'
 
-tests/test_world_old.py:356: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_peppol_mock_mode" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x79c46cace9e0&gt;
+tests/test_world_old.py:360: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_peppol_mock_mode" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x7583625ab490&gt;
 
     async def test_world_peppol_mock_mode(self):
         """WorldContext uses mock Peppol by default."""
@@ -313,7 +509,7 @@ tests/test_world_old.py:356: TypeError</failure></testcase><testcase classname="
                    ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:361: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_services_stop_on_exit" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x79c46caceb10&gt;
+tests/test_world_old.py:365: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldContextConfiguration" name="test_world_services_stop_on_exit" time="0.001"><failure message="TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'">self = &lt;test_world_old.TestWorldContextConfiguration object at 0x7583625ab5c0&gt;
 
     async def test_world_services_stop_on_exit(self):
         """WorldContext properly stops all services on exit."""
@@ -321,16 +517,16 @@ tests/test_world_old.py:361: TypeError</failure></testcase><testcase classname="
                 ^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: WorldContext.__init__() got an unexpected keyword argument 'pa_count'
 
-tests/test_world_old.py:366: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world_fixture" time="0.007"><failure message="assert 0 == 1&#10; +  where 0 = len([])&#10; +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x79c46a3758c0&gt;, pas=[]).pas">self = &lt;test_world_old.TestWorldFixtures object at 0x79c46cae2fd0&gt;, world = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x79c46a3758c0&gt;, pas=[])
+tests/test_world_old.py:370: TypeError</failure></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world_fixture" time="0.006"><failure message="assert 0 == 1&#10; +  where 0 = len([])&#10; +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x758362108d10&gt;, pas=[]).pas">self = &lt;test_world_old.TestWorldFixtures object at 0x7583625c2d50&gt;, world = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x758362108d10&gt;, pas=[])
 
     async def test_world_fixture(self, world):
         """world fixture provides 1 PA."""
 &gt;       assert len(world.pas) == 1
 E       assert 0 == 1
 E        +  where 0 = len([])
-E        +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x79c46a3758c0&gt;, pas=[]).pas
+E        +    where [] = WorldContext(peppol=&lt;pac0.shared.test.service.dns.DNSServiceContext object at 0x758362108d10&gt;, pas=[]).pas
 
-tests/test_world_old.py:397: AssertionError</failure></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world1pa_fixture" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 400&#10;      async def test_world1pa_fixture(self, world1pa):&#10;          &quot;&quot;&quot;world1pa fixture provides 1 PA.&quot;&quot;&quot;&#10;          assert len(world1pa.pas) == 1&#10;E       fixture 'world1pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:400&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 400
+tests/test_world_old.py:401: AssertionError</failure></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world1pa_fixture" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 404&#10;      async def test_world1pa_fixture(self, world1pa):&#10;          &quot;&quot;&quot;world1pa fixture provides 1 PA.&quot;&quot;&quot;&#10;          assert len(world1pa.pas) == 1&#10;E       fixture 'world1pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:404&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 404
       async def test_world1pa_fixture(self, world1pa):
           """world1pa fixture provides 1 PA."""
           assert len(world1pa.pas) == 1
@@ -338,7 +534,7 @@ E       fixture 'world1pa' not found
 &gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world
 &gt;       use 'pytest --fixtures [testpath]' for help on them.
 
-/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:400</error></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world2pa_fixture" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 404&#10;      async def test_world2pa_fixture(self, world2pa):&#10;          &quot;&quot;&quot;world2pa fixture provides 2 PAs.&quot;&quot;&quot;&#10;          assert len(world2pa.pas) == 2&#10;E       fixture 'world2pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:404&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 404
+/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:404</error></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world2pa_fixture" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 408&#10;      async def test_world2pa_fixture(self, world2pa):&#10;          &quot;&quot;&quot;world2pa fixture provides 2 PAs.&quot;&quot;&quot;&#10;          assert len(world2pa.pas) == 2&#10;E       fixture 'world2pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:408&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 408
       async def test_world2pa_fixture(self, world2pa):
           """world2pa fixture provides 2 PAs."""
           assert len(world2pa.pas) == 2
@@ -346,7 +542,7 @@ E       fixture 'world2pa' not found
 &gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world
 &gt;       use 'pytest --fixtures [testpath]' for help on them.
 
-/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:404</error></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world4pa_fixture" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 408&#10;      async def test_world4pa_fixture(self, world4pa):&#10;          &quot;&quot;&quot;world4pa fixture provides 4 PAs.&quot;&quot;&quot;&#10;          assert len(world4pa.pas) == 4&#10;E       fixture 'world4pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:408&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 408
+/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:408</error></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_world4pa_fixture" time="0.000"><error message="failed on setup with &quot;file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 412&#10;      async def test_world4pa_fixture(self, world4pa):&#10;          &quot;&quot;&quot;world4pa fixture provides 4 PAs.&quot;&quot;&quot;&#10;          assert len(world4pa.pas) == 4&#10;E       fixture 'world4pa' not found&#10;&gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world&#10;&gt;       use 'pytest --fixtures [testpath]' for help on them.&#10;&#10;/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:412&quot;">file /home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py, line 412
       async def test_world4pa_fixture(self, world4pa):
           """world4pa fixture provides 4 PAs."""
           assert len(world4pa.pas) == 4
@@ -354,4 +550,4 @@ E       fixture 'world4pa' not found
 &gt;       available fixtures: _class_scoped_runner, _function_scoped_runner, _module_scoped_runner, _package_scoped_runner, _pytest_bdd_example, _session_scoped_runner, anyio_backend, anyio_backend_name, anyio_backend_options, broker_context, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, event_loop_policy, extra, extras, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, include_metadata_in_junit_xml, metadata, monkeypatch, nats_server, nats_service, pa_service, pa_service_legacy, peppol_service, pytestbdd_stepdef_given_trace, pytestbdd_stepdef_then_trace, pytestbdd_stepdef_when_trace, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory, unused_tcp_port, unused_tcp_port_factory, unused_udp_port, unused_udp_port_factory, world
 &gt;       use 'pytest --fixtures [testpath]' for help on them.
 
-/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:408</error></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_nats_service_fixture" time="0.010" /><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_peppol_service_fixture" time="0.001" /><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_pa_service_fixture" time="0.421" /><testcase classname="tests.test_world_old.TestServiceRunner" name="test_service_runner_readiness" time="0.019" /><testcase classname="tests.test_world_old.TestServiceRunner" name="test_service_runner_timeout" time="0.116" /></testsuite></testsuites>
+/home/philippe/src/PA_Communautaire/packages/pac0/tests/test_world_old.py:412</error></testcase><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_nats_service_fixture" time="0.010" /><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_peppol_service_fixture" time="0.001" /><testcase classname="tests.test_world_old.TestWorldFixtures" name="test_pa_service_fixture" time="0.421" /><testcase classname="tests.test_world_old.TestServiceRunner" name="test_service_runner_readiness" time="0.017" /><testcase classname="tests.test_world_old.TestServiceRunner" name="test_service_runner_timeout" time="0.116" /></testsuite></testsuites>

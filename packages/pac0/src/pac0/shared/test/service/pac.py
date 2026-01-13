@@ -48,7 +48,7 @@ class PacServiceContext(BaseServiceContext):
 
     async def __aenter__(self) -> Self:
         """Enter the context manager (start the services if not external)"""
-        self.api_gateway = FastApiServiceContext(name="api_gateway")
+        self.api_gateway = FastApiServiceContext()
         self.esb_central = NatsServiceContext(name="esb_central")
         self.controle_formats = FastStreamServiceContext(
             name="controle_formats",

@@ -16,11 +16,10 @@ Fonctionnalité: Requêtes PEPPOL
             """
 
 
-    Scénario: xxxxx
-
-        #Soit l'entreprise #e1 avec le SIREN "123456789"
-        #Et l'entreprise #e1 enregistrée sur PEPPOL
-        #Quand j'interroge le SML via DNS
-        #Alors j'obtiens une réponse DNS valide
-        #Et j'obtiens l'URL du SMP "https://smp.pa-distante.fr"
+    Scénario: peppol req
+      #Soit l'entreprise #e1 avec le SIREN "123456789"
+      #Et l'entreprise #e1 enregistrée sur PEPPOL
+      #Quand j'interroge le SML via DNS
+      #Alors j'obtiens une réponse DNS valide
+      #Et j'obtiens l'URL du SMP "https://smp.pa-distante.fr"
 

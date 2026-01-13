@@ -1,4 +1,5 @@
 # language: fr
+# TODO: deprecate !!
 Fonctionnalité: Cycle de vie des services
     Tests du cycle de vie des services FastStream et NATS pour la plateforme PA.
 

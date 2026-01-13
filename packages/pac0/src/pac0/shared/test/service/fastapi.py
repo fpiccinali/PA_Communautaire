@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import pytest
 from pac0.shared.test.service.base import BaseServiceContext, ServiceConfig
 
 
@@ -10,7 +11,8 @@ class FastApiServiceContext(BaseServiceContext):
 
     def __init__(
         self,
-        name: str | None = None,
+        name: str = "api_gateway",
+        nats_url: str = "nats://localhost:4222",
     ) -> None:
         config = ServiceConfig(
             name=name,
@@ -19,11 +21,15 @@ class FastApiServiceContext(BaseServiceContext):
                 "uv",
                 "run",
                 "fastapi",
-                "run", #"dev",
+                "run",  # "dev",
                 "src/pac0/service/api_gateway/main.py",
             ],
             port=0,
             allow_ConnectionRefusedError=True,
             health_check_path="/healthcheck",
+            env_var_extra={
+                "NATS_URL": nats_url,
+            },
         )
         super().__init__(config)
+

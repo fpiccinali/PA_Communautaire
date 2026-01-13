@@ -111,7 +111,7 @@ app = FastStream(broker, context=ContextRepo({"var1": "my-var1-value"}))
 
 # @pytest.fixture
 @pytest_asyncio.fixture
-async def world() -> WorldContextOld:
+async def world_old() -> WorldContextOld:
     print("vvvvv world fixture starts .......")
 
     async with (

@@ -5,12 +5,9 @@
 from pac_bdd.domain import *
 from pytest_bdd import scenarios
 import glob
+import logging
 
-# scenarios("../../docs/briques/04-validation-metier/compliance.feature")
-# scenarios("compliance.feature")
-# scenarios("format.feature")
-# scenarios("pa_multiple.feature")
-# scenarios("publish_article.feature")
+logging.getLogger().setLevel(logging.DEBUG)
 
 
 # loop over all *.feature files

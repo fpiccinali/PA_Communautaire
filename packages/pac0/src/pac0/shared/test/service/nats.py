@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import pytest
 from pac0.shared.test.service.base import BaseServiceContext, ServiceConfig
 
 
@@ -14,9 +15,10 @@ class NatsServiceContext(BaseServiceContext):
     ) -> None:
         config = ServiceConfig(
             name=name,
-            command=["uv", "fastapi", "dev", "app1/main.py"],
+            command=["nats-server", "--port={PORT}"],
             port=0,
             allow_ConnectionRefusedError=True,
             health_check_path=None,
         )
         super().__init__(config)
+

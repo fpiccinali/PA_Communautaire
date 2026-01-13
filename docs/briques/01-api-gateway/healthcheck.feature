@@ -6,9 +6,17 @@ Fonctionnalité: healthcheck
 
 
     Contexte:
+        Soit une pa communautaire
 
     
-    Scénario: healthcheck api ok
+    Scénario: healthcheck ok
+        Etant un utilisateur
+
+        Quand j'appele l'API GET /healthcheck
+        Alors j'obtiens le code de retour 200
+
+
+    Scénario: healthcheck full ok
         Etant un utilisateur
 
         Quand j'appele l'API GET /healthcheck

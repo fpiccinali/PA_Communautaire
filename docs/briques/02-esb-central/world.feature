@@ -1,4 +1,5 @@
 # language: fr
+# TODO: deprecate !!
 Fonctionnalité: Gestion du monde de test (WorldContext)
     Le monde de test permet de configurer un environnement complet avec:
     - Un service NATS (broker de messages)

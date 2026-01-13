@@ -4,39 +4,49 @@
 
 import asyncio
 import functools
+from typing import Any
 
 import httpx
-from pac0.shared.test.world import WorldContext
+from pydantic import BaseModel
+import pytest
+from pac0.shared.test.world import WorldContext, world, world1
 from pytest_bdd import given, parsers, scenario, then, when
 
 
-# TODO: move to shared
-def async_to_sync(fn):
-    """Convert async function to sync function."""
+# local BDD context class
+class LocalTestCtx(BaseModel):
+    result: Any | None = None
+    # TODO: make a typed result_request
 
-    @functools.wraps(fn)
-    def wrapper(*args, **kwargs):
-        return asyncio.run(fn(*args, **kwargs))
 
-    return wrapper
+# local BDD context fixture
+@pytest.fixture
+def ctx():
+    """Contexte pour les tests BDD"""
+    return LocalTestCtx()
 
+
+# Soit une pa communautaire
+@given("""une pa communautaire""")
+def api_call(
+    world1: WorldContext,
+):
+    pass
 
 
 # Quand j'appele l'API GET /healthcheck
-#@async_to_sync
 @when(
     parsers.parse("j'appele l'API {verb} {path}"),
 )
 def api_call(
-    world1pac: WorldContext,
+    ctx: LocalTestCtx,
+    world1: WorldContext,
     verb: str,
     path: str,
 ):
-    #print(world1pac)
-
-    response = httpx.get(world1pac.pac1.api_base_url)
-    assert response.status_code == 200
-    assert response.json() == {"Hello": "World"}
+    with world1.pa1.get_client() as client:
+        # response = client.get(path)
+        ctx.result = client.request(verb, path)
 
     """
     async with world1pac.pac1.HttpxAsyncClient() as client:
@@ -52,6 +62,10 @@ def api_call(
 
 # Alors j'obtiens le code de retour 200
 @then(parsers.parse("j'obtiens le code de retour {code}"))
-def api_return_code(code):
-    #raise NotImplementedError()
-    ...
+def api_return_code(
+    ctx: LocalTestCtx,
+    code,
+):
+    # assert response.status_code == 200
+    assert ctx.result.status_code == code
+    # assert response.json() == {"Hello": "World"}

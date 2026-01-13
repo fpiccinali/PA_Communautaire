@@ -29,7 +29,7 @@ from pac0.shared.test.service.dns import DNSServiceContext
 from pac0.shared.test.service.pac import PacServiceContext
 
 logger = logging.getLogger(__name__)
-
+logger.setLevel(logging.DEBUG)
 
 @dataclass
 class WorldContext:
@@ -42,6 +42,24 @@ class WorldContext:
         self.peppol = DNSServiceContext()
         self.pas = []
         super().__init__()
+
+    @property
+    def pa(self) -> PacServiceContext:
+        if len(self.pas) < 1:
+            raise IndexError("pa instance not found")
+        return self.pas[0]
+
+    @property
+    def pa1(self) -> PacServiceContext:
+        if len(self.pas) < 1:
+            raise IndexError("pa instance not found")
+        return self.pas[0]
+
+    @property
+    def pa2(self) -> PacServiceContext:
+        if len(self.pas) < 2:
+            raise IndexError("pa instance not found")
+        return self.pas[1]
 
     async def pa_new(self, count:int = 1) -> PacServiceContext:
         '''
@@ -75,6 +93,7 @@ class WorldContext:
 
 
 
+# TODO: deprecate
 class WorldContextOld:
     """
     Complete test world with NATS, Peppol, and multiple PA instances.
@@ -274,7 +293,7 @@ class WorldContextOld:
 # Pytest Fixtures
 # =============================================================================
 
-
+# TODO: deprecate ?
 @pytest.fixture
 async def nats_service():
     """Fixture: Isolated NATS service instance."""
@@ -282,13 +301,14 @@ async def nats_service():
         yield svc
 
 
+# TODO: deprecate
 @pytest.fixture
 async def peppol_service():
     """Fixture: Mock PEPPOL service instance."""
     async with PeppolService(mock=True) as svc:
         yield svc
 
-
+# TODO: deprecate ?
 @pytest.fixture
 async def pa_service():
     """Fixture: Single PA service instance."""
@@ -296,6 +316,7 @@ async def pa_service():
         yield svc
 
 
+# TODO: deprecate
 @pytest.fixture
 async def world_old():
     """Fixture: World with 1 PA (default)."""
@@ -308,3 +329,11 @@ async def world():
     """Fixture: World"""
     async with WorldContext() as ctx:
         yield ctx
+
+
+@pytest.fixture
+async def world1(world):
+    """Fixture: World"""
+    if len(world.pas) == 0:
+        await world.pa_new()
+    yield world

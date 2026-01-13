@@ -23,6 +23,7 @@ from contextlib import asynccontextmanager, contextmanager
 from dataclasses import dataclass
 import logging
 import os
+from pathlib import Path
 import socket
 import subprocess
 import time
@@ -33,9 +34,25 @@ import httpx
 from pac0.shared.tools.api import find_available_port
 
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+PACKAGE_BASE_FOLDER = (
+    Path(__file__)
+    .absolute()
+    # /home/.../packages/pac0/src/pac0/shared/test/service/base.py
+    .parent
+    # /home/.../packages/pac0/src/pac0/shared/test/service \
+    .parent
+    # /home/.../packages/pac0/src/pac0/shared/test
+    .parent
+    # /home/.../packages/pac0/src/pac0/shared
+    .parent
+    # /home/.../packages/pac0/src/pac0
+    .parent
+    # /home/.../packages/pac0/src
+    .parent
+    # /home/.../packages/pac0
+)
 
 
 @runtime_checkable
@@ -86,10 +103,12 @@ class ServiceConfig:
     startup_timeout: float = 30.0
     shutdown_timeout: float = 10.0
     allow_ConnectionRefusedError: bool = False
-    stdout: int = subprocess.PIPE,
-    stderr: int = subprocess.PIPE,
+    stdout: int = subprocess.PIPE
+    stderr: int = subprocess.PIPE
+    env_var_extra: dict[str, str] | None = None
 
 
+# TODO: move to BaseModel
 class BaseServiceContext:
     """
     Base implementation of ServiceContext protocol.
@@ -101,6 +120,7 @@ class BaseServiceContext:
         self._process: subprocess.Popen | None = None
         self._client: httpx.Client | None = None
         self._async_client: httpx.AsyncClient | None = None
+        self.is_ready = False
 
     # Explicitly declare that this class implements ServiceContext protocol
     def __init_subclass__(cls) -> None:
@@ -115,21 +135,24 @@ class BaseServiceContext:
         logger.info(
             f"Starting service {self.config.name} on port {self.config.port} : {' '.join(self.config.command)}"
         )
-
         env = os.environ.copy()
         env["PORT"] = str(self.config.port)
+        if self.config.env_var_extra:
+            env.update(self.config.env_var_extra)
         command = [c.format(**env) for c in self.config.command]
+
         self._process = subprocess.Popen(
             command,
-            stdout=subprocess.PIPE, # self.config.stdout,
-            stderr=subprocess.PIPE, # self.config.stderr,
+            # stdout=subprocess.PIPE,  # self.config.stdout,
+            # stderr=subprocess.PIPE,  # self.config.stderr,
             text=True,
             env=env,
+            cwd=PACKAGE_BASE_FOLDER,
         )
 
         # Wait for service to be ready
-        ready = await self.wait_for_ready(self.config.startup_timeout)
-        if not ready:
+        self.is_ready = await self.wait_for_ready(self.config.startup_timeout)
+        if not self.is_ready:
             await self._terminate()
             raise TimeoutError(
                 f"Service {self.config.name} failed to start within {self.config.startup_timeout}s"
@@ -190,10 +213,9 @@ class BaseServiceContext:
             sock.close()
             return True
         except ConnectionRefusedError:
-            #print("cxcxccccc", self.config.allow_ConnectionRefusedError)
             return self.config.allow_ConnectionRefusedError
         except (socket.timeout, OSError) as e:
-            #print(e)
+            # print(e)
             return False
         
 
@@ -201,6 +223,7 @@ class BaseServiceContext:
         """Check HTTP health endpoint."""
         try:
             url = f"http://{self.config.host}:{self.config.port}{self.config.health_check_path}"
+            print("_check_http_health", url)
             async with httpx.AsyncClient(
                 timeout=self.config.health_check_timeout
             ) as client:
@@ -208,7 +231,8 @@ class BaseServiceContext:
                     url
                 )
                 return response.status_code == 200
-        except Exception:
+        except Exception as e:
+            print("cccccc", e)
             return False
 
     @contextmanager
