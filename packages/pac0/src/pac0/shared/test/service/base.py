@@ -108,6 +108,7 @@ class ServiceConfig:
     env_var_extra: dict[str, str] | None = None
 
 
+
 # TODO: move to BaseModel
 class BaseServiceContext:
     """
@@ -131,7 +132,7 @@ class BaseServiceContext:
     async def __aenter__(self) -> Self:
         """Start the service subprocess."""
         if self.config.port == 0:
-            self.config.port = find_available_port(start_port=8000)
+            self.config.port = await find_available_port(start_port=8000)
         logger.info(
             f"Starting service {self.config.name} on port {self.config.port} : {' '.join(self.config.command)}"
         )
@@ -255,3 +256,8 @@ class BaseServiceContext:
             timeout=self.config.health_check_timeout,
         ) as client:
             yield client
+
+    @property
+    def url(self) -> str:
+        # TODO: add self.protocol to avoid overridding
+        return f"http://{self.config.host}:{self.config.port}"

@@ -107,6 +107,7 @@ class ServiceProtocol(Protocol):
         ...
 
 
+# TODO: obsolete
 class BaseService:
     """
     Base class providing common service functionality.

@@ -53,20 +53,17 @@ class PacServiceContext(BaseServiceContext):
         # start the esb service first (api dependency)
         self.esb_central = NatsServiceContext(name="esb_central")
         await self.esb_central.__aenter__()
-        nats_url = (
-            f"nats://{self.esb_central.config.host}:{self.esb_central.config.port}"
-        )
 
-        self.api_gateway = FastApiServiceContext(nats_url=nats_url)
+        self.api_gateway = FastApiServiceContext(nats_url=self.esb_central.url)
         self.controle_formats = FastStreamServiceContext(
             name="controle_formats",
             app_file="src/pac0/service/validation_metier/main:app",
-            nats_url=nats_url,
+            nats_url=self.esb_central.url,
         )
         self.routage = FastStreamServiceContext(
             name="routage",
             app_file="src/pac0/service/routage/main:app",
-            nats_url=nats_url,
+            nats_url=self.esb_central.url,
         )
         # start all other services
         await asyncio.gather(*[s.__aenter__() for s in self._services()])

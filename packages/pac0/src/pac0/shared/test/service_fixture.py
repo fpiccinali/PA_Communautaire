@@ -416,12 +416,6 @@ async def nats_server():
         yield ctx
 
 
-@pytest.fixture
-async def broker_context(nats_server):
-    """Fixture: NatsBroker connected to test NATS server."""
-    async with BrokerContext(nats_server.url) as ctx:
-        yield ctx
-
 
 @pytest.fixture
 async def pa_service():

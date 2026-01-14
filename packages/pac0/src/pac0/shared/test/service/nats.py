@@ -22,3 +22,6 @@ class NatsServiceContext(BaseServiceContext):
         )
         super().__init__(config)
 
+    @property
+    def url(self) -> str:
+        return f"nats://{self.config.host}:{self.config.port}"

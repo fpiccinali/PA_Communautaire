@@ -4,10 +4,8 @@
 
 import asyncio
 import functools
-import pytest
 from pytest_bdd import given, parsers, then, when
-from .pac0_fixture import handle_all
-from pac0.shared.test.world import WorldContext, world, world1
+from pac0.shared.test.world import WorldContext
 
 
 # TODO: move to shared

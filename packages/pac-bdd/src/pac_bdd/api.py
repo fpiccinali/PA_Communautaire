@@ -70,5 +70,4 @@ def api_content_key_len(
     key: str,
     nb: str,
 ):
-    print("cccccc", len(ctx.result_json.get(key)), int(nb))
     assert len(ctx.result_json.get(key)) == int(nb)

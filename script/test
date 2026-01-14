@@ -143,12 +143,12 @@ def main() -> int:
     total = total_ok + total_ko
     print(f"\nTotal: OK: {total_ok}/{total}, KO: {total_ko}/{total}")
     print(f"\nReports generated in: {report_base}")
-    print(f"  - pac0/report.html")
-    print(f"  - pac0/report.xml")
-    print(f"  - pac0/report.md")
-    print(f"  - pac-bdd/report.html")
-    print(f"  - pac-bdd/report.xml")
-    print(f"  - pac-bdd/report.md")
+    print("  - pac0/report.html")
+    print("  - pac0/report.xml")
+    print("  - pac0/report.md")
+    print("  - pac-bdd/report.html")
+    print("  - pac-bdd/report.xml")
+    print("  - pac-bdd/report.md")
 
     # Return non-zero if any tests failed
     return 0 if all_passed else 1

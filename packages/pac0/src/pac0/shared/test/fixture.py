@@ -127,3 +127,14 @@ class PaContext:
             "nats_port": self.nats.port,
             "api_port": self.uvicorn_api.config.port,
         }
+
+
+# TODO: usefull for async/sync BDD step ??
+@pytest.fixture(scope="session")
+def event_loop_policy():
+    """
+    Use default event loop policy for the session.
+
+    This ensures consistent behavior across different test scenarios.
+    """
+    return asyncio.DefaultEventLoopPolicy()

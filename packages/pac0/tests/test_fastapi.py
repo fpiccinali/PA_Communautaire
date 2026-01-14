@@ -33,7 +33,7 @@ async def test_00100():
 
 async def test_00110():
     """basic uvicorn context manager random port"""
-    port = find_available_port()
+    port = await find_available_port()
 
     async with uvicorn_context(app, port=port) as server:
         assert server.config.port == port

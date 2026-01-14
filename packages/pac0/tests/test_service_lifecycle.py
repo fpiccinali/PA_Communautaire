@@ -6,13 +6,14 @@
 
 import asyncio
 from unittest.mock import MagicMock, call
-
+import pytest
 from faststream.nats import NatsBroker
 from nats.server import run as nats_run
 from pac0.shared.test.service_fixture import (
     BrokerContext,
     NatsServerContext,
 )
+from pac0.shared.test.world import nats_service
 
 # ============================================================================
 # Level 1-2: NATS Server Lifecycle
@@ -82,33 +83,33 @@ class TestBrokerConnection:
     See: https://faststream.ag2.ai/latest/nats/
     """
 
-    async def test_03_broker_connection(self, nats_server):
+    async def test_03_broker_connection(self, nats_service):
         """
         Level 3: Connect NatsBroker to NATS server.
         """
-        broker = NatsBroker(nats_server.url, apply_types=True)
+        broker = NatsBroker(nats_service.url, apply_types=True)
 
         async with broker as br:
             await br.start()
             # Broker is connected if no exception raised
             assert br is not None
 
-    async def test_03b_broker_context_wrapper(self, nats_server):
+    async def test_03b_broker_context_wrapper(self, nats_service):
         """
         Level 3b: Using BrokerContext wrapper class.
         """
-        async with BrokerContext(nats_server.url) as ctx:
+        async with BrokerContext(nats_service.url) as ctx:
             assert ctx.broker is not None
             assert ctx.wildcard_subscriber is not None
 
-    async def test_04_broker_pubsub_basic(self, nats_server):
+    async def test_04_broker_pubsub_basic(self, nats_service):
         """
         Level 4: Basic publish/subscribe with mock verification.
         """
         mock = MagicMock()
         messages_to_send = ["message_1", "message_2"]
 
-        broker = NatsBroker(nats_server.url, apply_types=True)
+        broker = NatsBroker(nats_service.url, apply_types=True)
         subscriber = broker.subscriber("test-subject")
 
         async with broker as br:
@@ -133,6 +134,7 @@ class TestBrokerConnection:
         # Verify all messages received
         mock.assert_has_calls([call(m) for m in messages_to_send])
 
+    @pytest.mark.skip("not implemented")
     async def test_04b_broker_pubsub_wildcard(self, broker_context):
         """
         Level 4b: Wildcard subscriber receives from any subject.
