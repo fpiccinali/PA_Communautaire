@@ -8,9 +8,11 @@ from pac0.shared.test.service.base import BaseServiceContext, ServiceConfig
 class FastStreamServiceContext(BaseServiceContext):
     """Test context for a FastStream service."""
 
-    def __init__(self, 
-            app_file: str,
-            name: str | None = None,
+    def __init__(
+        self,
+        app_file: str,
+        name: str | None = None,
+        nats_url: str = "nats://localhost:4222",
     ) -> None:
         config = ServiceConfig(
             name=name,
@@ -26,8 +28,10 @@ class FastStreamServiceContext(BaseServiceContext):
                 "--port={PORT}",
             ],
             port=0,
-            allow_ConnectionRefusedError = True,
-            health_check_path = None,
-
+            allow_ConnectionRefusedError=True,
+            health_check_path=None,
+            env_var_extra={
+                "NATS_URL": nats_url,
+            },
         )
         super().__init__(config)

@@ -29,16 +29,16 @@ from faststream import FastStream
 from faststream.nats import NatsBroker, NatsRouter
 from nats.server import run as nats_run
 
-from pac0.service.api_gateway.lib import router as router_api_gateway
-from pac0.service.gestion_cycle_vie.lib import router as router_gestion_cycle_vie
-from pac0.service.routage.lib import router as router_routage
+# from pac0.service.api_gateway.lib_api import router as router_api_gateway
+# from pac0.service.gestion_cycle_vie.lib import router as router_gestion_cycle_vie
+# from pac0.service.routage.lib import router as router_routage
+# from pac0.service.validation_metier.lib import router as router_validation_metier
 from pac0.service.routage.peppol import (
     PeppolEndpoint,
     PeppolEnvironment,
     PeppolLookupResult,
     PeppolLookupService,
 )
-from pac0.service.validation_metier.lib import router as router_validation_metier
 from pac0.shared.test.protocol import BaseService
 from pac0.shared.tools.api import uvicorn_context
 
@@ -401,7 +401,8 @@ class ServiceRunner:
             self.task = None
 
 
-class PaService(BaseService):
+# TODO: deprecate
+class PaService_OLD(BaseService):
     """
     Complete PA (Plateforme Agreee) service.
 
@@ -423,9 +424,9 @@ class PaService(BaseService):
 
     # Default routers to load
     DEFAULT_ROUTERS = [
-        (router_validation_metier, "validation-metier"),
-        (router_gestion_cycle_vie, "gestion-cycle-vie"),
-        (router_routage, "routage"),
+        # (router_validation_metier, "validation-metier"),
+        # (router_gestion_cycle_vie, "gestion-cycle-vie"),
+        # (router_routage, "routage"),
     ]
 
     def __init__(

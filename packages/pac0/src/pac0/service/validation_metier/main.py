@@ -3,7 +3,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from pac0.shared.esb import init_esb_app
-from pac0.service.validation_metier.lib import router
 
-broker, app = init_esb_app()
-broker.include_router(router)
+
+ctx, broker, app = init_esb_app("controle-formats")
+
+publisher = ctx.broker.publisher("test")
+
+
+@broker.subscriber(ctx.subject_in, ctx.queue)
+async def process(message):
+    await ctx.publisher_out.publish(message, correlation_id=message.correlation_id)
+    # await publisher_err.publish(message, correlation_id=message.correlation_id)

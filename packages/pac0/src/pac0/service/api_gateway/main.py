@@ -2,21 +2,14 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import os
 from fastapi import FastAPI
-from pac0.service.api_gateway.lib import router
-from faststream.nats import NatsBroker
-from faststream.nats.fastapi import NatsRouter
+from pac0.service.api_gateway.lib_api import router as router_api
+from pac0.service.api_gateway.lib_bus import router as router_bus
 
 app = FastAPI()
+
+app.include_router(router_bus)
+app.include_router(router_api)
+
 app.state.rank = "dev"
-
-nats_url = os.environ.get("NATS_URL", "nats://localhost:4222")
-print(f"Connecting to NATS {nats_url} ...")
-nats_router = NatsRouter(nats_url)
-
-app.include_router(nats_router)
-
-app.state.broker = nats_router.broker
-
-app.include_router(router)
+app.state.broker = router_bus.broker

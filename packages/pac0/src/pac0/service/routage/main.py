@@ -2,26 +2,16 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-"""
-Service de routage - Point d'entrée.
-
-Ce service est responsable du routage des factures vers les PA distantes
-via le réseau PEPPOL ou vers le PPF en fallback.
-"""
-
 from pac0.shared.esb import init_esb_app
 
-from .lib import router
+
+ctx, broker, app = init_esb_app("routage")
+
+# publisher = ctx.broker.publisher("test")
 
 
-# Initialisation de l'application FastStream
-broker, app = init_esb_app()
-
-# Inclure le router de routage
-broker.include_router(router)
-
-
-if __name__ == "__main__":
-    import asyncio
-
-    asyncio.run(app.run())
+@broker.subscriber(ctx.subject_in, ctx.queue)
+async def process(message):
+    await ctx.publisher_out.publish(message, correlation_id=message.correlation_id)
+    # await publisher_err.publish(message, correlation_id=message.correlation_id)
+    # TODO see lib.process()

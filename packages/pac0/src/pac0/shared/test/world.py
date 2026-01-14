@@ -24,7 +24,11 @@ from typing import Any, Coroutine, Optional, Self, AsyncContextManager
 
 import pytest
 
-from pac0.shared.test.services import NatsService, PaService, PeppolService
+from pac0.shared.test.services import (
+    NatsService,
+    PaService_OLD as PaService,
+    PeppolService,
+)
 from pac0.shared.test.service.dns import DNSServiceContext
 from pac0.shared.test.service.pac import PacServiceContext
 
@@ -334,6 +338,7 @@ async def world():
 @pytest.fixture
 async def world1(world):
     """Fixture: World"""
+    print("xxxxxxxxxxxxxxxxxx world1")
     if len(world.pas) == 0:
         await world.pa_new()
     yield world

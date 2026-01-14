@@ -11,7 +11,6 @@ via PEPPOL ou vers le PPF en fallback.
 
 from typing import Optional
 
-from faststream.nats import NatsRouter
 
 from pac0.shared.esb import QUEUE
 
@@ -19,20 +18,9 @@ from .models import InvoiceMessage, RoutingResult, RoutingStatus
 from .peppol import PeppolEndpoint, PeppolEnvironment, PeppolLookupService
 
 
-# Sujets NATS
-SUBJECT_IN = "routage-IN"
-SUBJECT_OUT = "routage-OUT"
-SUBJECT_ERR = "routage-ERR"
-
 # URL du PPF pour le fallback
 PPF_API_URL = "https://api.ppf.gouv.fr"
 
-# Router FastStream
-router = NatsRouter()
-
-# Publishers
-publisher_out = router.publisher(SUBJECT_OUT)
-publisher_err = router.publisher(SUBJECT_ERR)
 
 # Service PEPPOL (singleton)
 _peppol_service: Optional[PeppolLookupService] = None

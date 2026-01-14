@@ -16,6 +16,7 @@ from pytest_bdd import given, parsers, scenario, then, when
 # local BDD context class
 class LocalTestCtx(BaseModel):
     result: Any | None = None
+    result_status_code: int | None = None
     # TODO: make a typed result_request
 
 
@@ -44,28 +45,30 @@ def api_call(
     verb: str,
     path: str,
 ):
-    with world1.pa1.get_client() as client:
-        # response = client.get(path)
-        ctx.result = client.request(verb, path)
-
-    """
-    async with world1pac.pac1.HttpxAsyncClient() as client:
-        print(f"testing pac {world1pac.pac1} ...")
-        print(world1pac.pac1.info())
-        await asyncio.sleep(60)
-        response = await client.get("/")
-        assert response.status_code == 200
-        assert response.json() == {"Hello": "World"}
-    """
-    raise NotImplementedError()
+    with world1.pa1.api_gateway.get_client() as client:
+        response = client.request(verb, path)
+        ctx.result_status_code = response.status_code
+        ctx.result_json = response.json()
+        # TODO: not a good idea to store a context manager outside its scope
+        ctx.result = response
 
 
 # Alors j'obtiens le code de retour 200
-@then(parsers.parse("j'obtiens le code de retour {code}"))
+@then(parsers.parse("""j'obtiens le code de retour {code}"""))
 def api_return_code(
     ctx: LocalTestCtx,
-    code,
+    code: str,
 ):
     # assert response.status_code == 200
-    assert ctx.result.status_code == code
-    # assert response.json() == {"Hello": "World"}
+    assert ctx.result_status_code == int(code)
+
+
+# Et la réponse a une clé "healthcheck_resp" avec 2 éléments
+@then(parsers.parse("""la réponse a une clé "{key}" avec {nb} éléments"""))
+def api_content_key_len(
+    ctx: LocalTestCtx,
+    key: str,
+    nb: str,
+):
+    print("cccccc", len(ctx.result_json.get(key)), int(nb))
+    assert len(ctx.result_json.get(key)) == int(nb)

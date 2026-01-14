@@ -10,7 +10,6 @@ from typing import Any, AsyncContextManager, Self
 import httpx
 from pac0.shared.test.service.base import (
     BaseServiceContext,
-    ServiceConfig,
 )
 from pac0.shared.test.service.fastapi import FastApiServiceContext
 from pac0.shared.test.service.faststream import FastStreamServiceContext
@@ -29,16 +28,19 @@ class PacServiceContext(BaseServiceContext):
     api_gateway: FastApiServiceContext | None = None
     esb_central: NatsServiceContext | None = None
     controle_formats: FastStreamServiceContext | None = None
+    routage: FastStreamServiceContext | None = None
+
     # TODO: add all briques  ...
     client_async: httpx.AsyncClient | None = None
 
     def _services(self) -> list[AsyncContextManager]:
-        """returns internal services"""
+        """returns internal services (except esb service)"""
         return (
             [
+                # self.esb_central,
                 self.api_gateway,
-                self.esb_central,
                 self.controle_formats,
+                self.routage,
             ]
             if self.external_url is None
             else []
@@ -48,13 +50,25 @@ class PacServiceContext(BaseServiceContext):
 
     async def __aenter__(self) -> Self:
         """Enter the context manager (start the services if not external)"""
-        self.api_gateway = FastApiServiceContext()
+        # start the esb service first (api dependency)
         self.esb_central = NatsServiceContext(name="esb_central")
+        await self.esb_central.__aenter__()
+        nats_url = (
+            f"nats://{self.esb_central.config.host}:{self.esb_central.config.port}"
+        )
+
+        self.api_gateway = FastApiServiceContext(nats_url=nats_url)
         self.controle_formats = FastStreamServiceContext(
             name="controle_formats",
             app_file="src/pac0/service/validation_metier/main:app",
+            nats_url=nats_url,
         )
-
+        self.routage = FastStreamServiceContext(
+            name="routage",
+            app_file="src/pac0/service/routage/main:app",
+            nats_url=nats_url,
+        )
+        # start all other services
         await asyncio.gather(*[s.__aenter__() for s in self._services()])
 
         # starts an async client

@@ -27,9 +27,9 @@ from faststream import FastStream
 from faststream.nats import NatsBroker, NatsRouter
 from nats.server import run as nats_run
 
-from pac0.service.api_gateway.lib import router as router_api_gateway
-from pac0.service.gestion_cycle_vie.lib import router as router_gestion_cycle_vie
-from pac0.service.validation_metier.lib import router as router_validation_metier
+# from pac0.service.api_gateway.lib import router as router_api_gateway
+# from pac0.service.gestion_cycle_vie.lib import router as router_gestion_cycle_vie
+# from pac0.service.validation_metier.lib import router as router_validation_metier
 from pac0.shared.tools.api import uvicorn_context
 
 
