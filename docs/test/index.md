@@ -61,10 +61,10 @@ Test Summary
 Total: OK: 41/96, KO: 55/96
 
 Reports generated in: /home/philippe/src/PA_Communautaire/report
-  - /home/philippe/src/PA_Communautaire/report/pac0/report.html
-  - /home/philippe/src/PA_Communautaire/report/pac0/report.xml
-  - /home/philippe/src/PA_Communautaire/report/pac0/report.md
-  - /home/philippe/src/PA_Communautaire/report/pac-bdd/report.html
-  - /home/philippe/src/PA_Communautaire/report/pac-bdd/report.xml
-  - /home/philippe/src/PA_Communautaire/report/pac-bdd/report.md
+  - pac0/report.html
+  - pac0/report.xml
+  - pac0/report.md
+  - pac-bdd/report.html
+  - pac-bdd/report.xml
+  - pac-bdd/report.md
 ```
