@@ -49,8 +49,8 @@ Fonctionnalité: Requêtes PEPPOL
 
         Soit la racine SML "ma.racine.local"
 
-        Quand je calcule l'hôte SML pour SIREN "222222222"
-        Alors j'obtiens "B-3ddb2999105b666703fc700e14885016.iso6523-actorid-upis.ma.racine.local"
+        Quand je calcule l'hôte SML pour SIREN "222222223"
+        Alors j'obtiens "B-82b2b8c47a173b4be5e428bf8e5be1dc.iso6523-actorid-upis.ma.racine.local"
 
         Quand je calcule l'hôte SML pour SIRET "222222222"
         Alors j'obtiens "B-6dbdf4f29451b37456ca48b550bdbaee.iso6523-actorid-upis.ma.racine.local"
