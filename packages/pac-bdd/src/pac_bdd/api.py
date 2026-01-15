@@ -29,7 +29,7 @@ def ctx():
 
 # Soit une pa communautaire
 @given("""une pa communautaire""")
-def api_call(
+def _(
     world1: WorldContext,
 ):
     pass
@@ -39,7 +39,7 @@ def api_call(
 @when(
     parsers.parse("j'appele l'API {verb} {path}"),
 )
-def api_call(
+def _(
     ctx: LocalTestCtx,
     world1: WorldContext,
     verb: str,
@@ -55,7 +55,7 @@ def api_call(
 
 # Alors j'obtiens le code de retour 200
 @then(parsers.parse("""j'obtiens le code de retour {code}"""))
-def api_return_code(
+def _(
     ctx: LocalTestCtx,
     code: str,
 ):
@@ -65,7 +65,7 @@ def api_return_code(
 
 # Et la réponse a une clé "healthcheck_resp" avec 2 éléments
 @then(parsers.parse("""la réponse a une clé "{key}" avec {nb} éléments"""))
-def api_content_key_len(
+def _(
     ctx: LocalTestCtx,
     key: str,
     nb: str,

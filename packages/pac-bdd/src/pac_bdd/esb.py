@@ -14,7 +14,7 @@ handle_GLOBAL = None
 @when(
     parsers.parse("j'écoute le canal '{canal}'"),
 )
-def esb_sub(
+def _(
     world1: WorldContext,
     canal: str,
 ):
@@ -35,7 +35,7 @@ def esb_sub(
 @when(
     parsers.parse("je publie le message '{msg}' sur le canal '{canal}'"),
 )
-def esb_pub_msg(
+def _(
     world1: WorldContext,
     msg: str,
     canal: str,
@@ -48,7 +48,7 @@ def esb_pub_msg(
 
 # Alors j'obtiens sur le message 'hello' sur le canal 'pon'
 @then(parsers.parse("""j'obtiens sur le canal '{canal}' un message"""))
-def esb_sub_msg1(
+def _(
     world: WorldContext,
     canal: str,
 ):
@@ -59,7 +59,7 @@ def esb_sub_msg1(
 # Alors j'obtiens sur le message 'hello' sur le canal 'pong'
 # @then(parsers.parse("""j'obtiens sur le canal '{canal}' le message '{msg}'"""))
 @then(parsers.parse("""j'obtiens le message '{msg}' sur le canal '{canal}'"""))
-def esb_sub_msg2(
+def _(
     world1: WorldContext,
     msg: str,
     canal: str,

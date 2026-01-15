@@ -62,7 +62,7 @@ async def esb_central_service():
 @when(
     parsers.parse('''je lance le service "01-api-gateway"'''),
 )
-def start_01(
+def _(
     ctx: LocalTestCtx,
     api_gateway_service: FastApiServiceContext,
 ):
@@ -73,7 +73,7 @@ def start_01(
 @when(
     parsers.parse('''je lance le service "02-esb-central"'''),
 )
-def start_02(
+def _(
     ctx: LocalTestCtx,
     esb_central_service: NatsServiceContext,
 ):
@@ -82,7 +82,7 @@ def start_02(
 
 # Alors le service "01-api-gateway" est prêt
 @then("""le service "01-api-gateway" est prêt""")
-def ready_01(
+def _(
     ctx: LocalTestCtx,
 ):
     assert ctx.service_api_gateway, "Le service n'est pas instancié"
@@ -91,7 +91,7 @@ def ready_01(
 
 # Alors le service "02-esb-central" est prêt
 @then('''le service "02-esb-central" est prêt''')
-def ready_02(
+def _(
     ctx: LocalTestCtx,
 ):
     assert ctx.service_esb_central, "Le service n'est pas instancié"
@@ -100,7 +100,7 @@ def ready_02(
 
 # Alors le service "01-api-gateway" n'est pas prêt
 @then('''le service "01-api-gateway" n'est pas prêt''')
-def not_ready_01(
+def _(
     ctx: LocalTestCtx,
 ):
     if ctx.service_api_gateway:
@@ -111,7 +111,7 @@ def not_ready_01(
 # Alors le service "02-esb-central" n'est pas prêt
 @when("""le service "02-esb-central" n'est pas prêt""")
 @then("""le service "02-esb-central" n'est pas prêt""")
-def not_ready_02(
+def _(
     ctx: LocalTestCtx,
 ):
     if ctx.service_esb_central:

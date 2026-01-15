@@ -10,15 +10,15 @@ ctx = {'nb': 0}
 # on décore la fonction pour lui dire qu'elle doit être appelée
 # pour l'étape "Quand je fais quelque chose"
 @when("je fais quelque chose")
-# peu import le nom de la fonction (il doit être unique)
-def doing_something():
+# peu import le nom de la fonction
+def _():
     # on place dans le contexte la valeur modifiée
     ctx["nb"] += 1
 
 # même chose pour l'étape "Quand je fais autre chose"
 # valable aussi pour "Et je fais autre chose"
 @when("je fais autre chose")
-def doing_something_else():
+def _():
     ctx["nb"] += 1
 
 
@@ -26,7 +26,7 @@ def doing_something_else():
 # notez le paramêtre `nb`
 # notez l'utilisation pratique des triple quotes (''')
 @then(parsers.parse("""j'ai fait {nb} choses"""))
-def it_works(nb):
+def _(nb):
     # si le nombre donnée `nb` ne corresponds pas au contexte, on échoue
     assert ctx['nb'] == int(nb)
 

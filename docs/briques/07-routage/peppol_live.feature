@@ -6,14 +6,9 @@ Fonctionnalité: Requêtes PEPPOL
 
     Contexte:
         Soit le service PEPPOL simulé avec:
-            """
-            sml: acc.edelivery.tech.ec.europa.eu
-            entreprises:
-            - id: e1
-              smp: https://smp.pa-distante.fr
-            - id: e2
-              smp: https://smp.autre-pa.fr
-            """
+            | id    | smp                         |
+            | e1    | https://smp.pa-distante.fr  |
+            | e2    | https://smp.autre-pa.fr     |
 
 
     Scénario: peppol req
